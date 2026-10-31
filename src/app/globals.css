@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 :root {
   color-scheme: light;
 
@@ -66,6 +68,10 @@
   --code-string: #A8CDE4;
   --code-chrome: #2E2E2E;
 
+  /* Modals */
+  --modal-overlay: rgba(0, 0, 0, 0.45);
+  --modal-image-bg: #EAEAEA;
+
   /* Shadows */
   --shadow-ring: inset 0 0 0 1px rgba(13, 13, 13, 0.10);
   --shadow-ring-faint: 0 0 0 1px rgba(13, 13, 13, 0.05);
@@ -106,6 +112,10 @@
     --shadow-ring-faint-inset: inset 0 0 0 1px rgba(249, 249, 249, 0.06);
     --shadow-elevated: inset 0 0 0 1px rgba(249, 249, 249, 0.1), 0 0 0 1px rgba(249, 249, 249, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.5);
     --shadow-overlay: inset 0 0 0 1px rgba(249, 249, 249, 0.06), 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+    /* Modals */
+    --modal-overlay: rgba(0, 0, 0, 0.85);
+    --modal-image-bg: #0A0A0A;
   }
 }
 
@@ -116,6 +126,7 @@
   --surface-default: #0D0D0D;
   --surface-base: #161616;
   --surface-raised: #222222;
+  --surface-code: #050505;
 
   --text-primary: #F9F9F9;
   --text-secondary: #D1D1D1;
@@ -139,6 +150,10 @@
   --shadow-ring-faint-inset: inset 0 0 0 1px rgba(249, 249, 249, 0.06);
   --shadow-elevated: inset 0 0 0 1px rgba(249, 249, 249, 0.1), 0 0 0 1px rgba(249, 249, 249, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.5);
   --shadow-overlay: inset 0 0 0 1px rgba(249, 249, 249, 0.06), 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+
+  /* Modals */
+  --modal-overlay: rgba(0, 0, 0, 0.85);
+  --modal-image-bg: #0A0A0A;
 }
 
 /* Explicit data-theme="light" override */
@@ -173,6 +188,10 @@
   --shadow-elevated: inset 0 0 0 1px rgba(249, 249, 249, 0.2), 0 0 0 1px rgba(13, 13, 13, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
   --shadow-overlay: inset 0 0 0 1px rgba(13, 13, 13, 0.05), 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-code-ring: inset 0 0 0 1px rgba(249, 249, 249, 0.10);
+
+  /* Modals */
+  --modal-overlay: rgba(0, 0, 0, 0.45);
+  --modal-image-bg: #EAEAEA;
 }
 
 @theme inline {
@@ -180,6 +199,9 @@
   --color-surface-base: var(--surface-base);
   --color-surface-raised: var(--surface-raised);
   --color-surface-code: var(--surface-code);
+
+  --color-modal-overlay: var(--modal-overlay);
+  --color-modal-image-bg: var(--modal-image-bg);
 
   --color-primary: var(--text-primary);
   --color-secondary: var(--text-secondary);

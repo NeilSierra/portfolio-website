@@ -239,19 +239,17 @@ export default function Education() {
                     key={cat}
                     type="button"
                     onClick={() => handleCategoryChange(cat)}
-                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
-                      isActive
-                        ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-sm"
-                        : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)] border border-[var(--border-default)]"
-                    }`}
+                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${isActive
+                      ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-sm"
+                      : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)] border border-[var(--border-default)]"
+                      }`}
                   >
                     <span>{cat}</span>
                     <span
-                      className={`text-[10px] px-1.5 py-0.5 rounded-[2px] ${
-                        isActive
-                          ? "bg-[var(--surface-base)] text-[var(--text-primary)]"
-                          : "bg-[var(--surface-raised)] text-[var(--text-tertiary)]"
-                      }`}
+                      className={`text-[10px] px-1.5 py-0.5 rounded-[2px] ${isActive
+                        ? "bg-[var(--surface-base)] text-[var(--text-primary)]"
+                        : "bg-[var(--surface-raised)] text-[var(--text-tertiary)]"
+                        }`}
                     >
                       {count}
                     </span>
@@ -368,11 +366,10 @@ export default function Education() {
                       key={pg}
                       type="button"
                       onClick={() => setCurrentPage(pg)}
-                      className={`w-8 h-8 rounded-[4px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
-                        currentPage === pg
-                          ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-xs"
-                          : "border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)]"
-                      }`}
+                      className={`w-8 h-8 rounded-[4px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${currentPage === pg
+                        ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-xs"
+                        : "border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)]"
+                        }`}
                       aria-label={`Page ${pg}`}
                       aria-current={currentPage === pg ? "page" : undefined}
                     >

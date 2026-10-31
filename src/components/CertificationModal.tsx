@@ -76,7 +76,7 @@ export function CertificationModal({
       role="dialog"
       aria-modal="true"
       aria-label={`Certificate viewer: ${currentCert.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/60 dark:bg-black/85 backdrop-blur-xs animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-[var(--modal-overlay)] backdrop-blur-xs animate-fade-in"
       onClick={onClose}
     >
       <div
@@ -115,7 +115,7 @@ export function CertificationModal({
         </div>
 
         {/* Center: Image Display Frame - Strictly bounded to prevent vertical overflow */}
-        <div className="relative flex-1 min-h-0 w-full bg-[var(--surface-raised)]/40 dark:bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden transition-colors">
+        <div className="relative flex-1 min-h-0 w-full bg-[var(--modal-image-bg)] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden transition-colors">
           {currentCert.imageUrl ? (
             <div className="relative w-full h-[40vh] sm:h-[48vh] md:h-[54vh] max-h-[500px]">
               <Image
@@ -123,7 +123,7 @@ export function CertificationModal({
                 alt={currentCert.title}
                 fill
                 sizes="(max-width: 1024px) 100vw, 900px"
-                className="object-contain"
+                className="object-contain drop-shadow-sm"
                 priority
               />
             </div>
