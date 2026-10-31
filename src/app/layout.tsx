@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
+import { portfolioData } from "@/data/portfolio";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -26,24 +27,22 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://neilsierra.dev"),
-  title: "Neil Sierra | Full Stack Developer",
-  description:
-    "Portfolio of Neil Sierra, a 3rd-year IT student and full stack developer in Cavite, Philippines. Open to internships and freelance projects.",
+  title: portfolioData.meta.title,
+  description: portfolioData.meta.description,
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
-    title: "Neil Sierra | Full Stack Developer",
-    description:
-      "Portfolio of Neil Sierra, a 3rd-year IT student and full stack developer in Cavite, Philippines. Open to internships and freelance projects.",
+    title: portfolioData.meta.title,
+    description: portfolioData.meta.description,
     url: "https://neilsierra.dev",
     siteName: "Neil Sierra Portfolio",
     images: [
       {
-        url: "/assets/og-image.svg",
+        url: portfolioData.meta.ogImage,
         width: 1200,
         height: 630,
-        alt: "Neil Sierra - Full Stack Developer",
+        alt: portfolioData.meta.title,
       },
     ],
     locale: "en_US",
