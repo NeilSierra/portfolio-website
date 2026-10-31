@@ -3,22 +3,19 @@
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { AppIcon } from "./AppIcon";
+import { HackathonItem } from "@/data/portfolio";
 
 interface CompetitionModalProps {
   isOpen: boolean;
   onClose: () => void;
-  title: string;
-  result: string;
-  images: string[];
+  competitions: HackathonItem[];
   initialIndex?: number;
 }
 
 export function CompetitionModal({
   isOpen,
   onClose,
-  title,
-  result,
-  images,
+  competitions,
   initialIndex = 0,
 }: CompetitionModalProps) {
   const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
@@ -30,12 +27,12 @@ export function CompetitionModal({
   }
 
   const handlePrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-  }, [images.length]);
+    setCurrentIndex((prev) => (prev > 0 ? prev - 1 : competitions.length - 1));
+  }, [competitions.length]);
 
   const handleNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-  }, [images.length]);
+    setCurrentIndex((prev) => (prev < competitions.length - 1 ? prev + 1 : 0));
+  }, [competitions.length]);
 
   // Keyboard navigation & body scroll lock
   useEffect(() => {
@@ -61,117 +58,152 @@ export function CompetitionModal({
     };
   }, [isOpen, onClose, handlePrev, handleNext]);
 
-  if (!isOpen || images.length === 0) return null;
+  if (!isOpen || competitions.length === 0) return null;
+
+  const currentComp = competitions[currentIndex];
+  const hasImage = Boolean(currentComp.images && currentComp.images.length > 0);
+  const currentImage = hasImage ? currentComp.images![0] : null;
+  const isWinner = currentComp.result.toLowerCase().includes("winner");
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 animate-fade-in"
       role="dialog"
       aria-modal="true"
-      aria-label={`${title} image viewer`}
+      aria-label={`${currentComp.event} competition modal`}
       onClick={onClose}
     >
-      {/* Container - Stop propagation on inner content click */}
+      {/* Modal Container */}
       <div
-        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-[8px] bg-[var(--surface-base)] border border-[var(--border-strong)] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-[var(--border-default)] bg-[var(--surface-raised)]/60">
-          <div className="flex items-center gap-3 min-w-0 pr-3">
-            <span className="font-plex-mono text-[10px] sm:text-[11px] px-2 py-0.5 rounded-[3px] bg-[var(--accent)] text-white font-semibold uppercase tracking-wider shrink-0">
-              {result}
+        {/* Header Bar */}
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-[#2E2E2E] bg-[#161616] shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0 pr-2">
+            <span
+              className={`font-plex-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-[3px] font-semibold uppercase tracking-wider shrink-0 ${
+                isWinner ? "bg-[var(--accent)] text-white" : "bg-[#2A2A2A] text-[#D1D1D1] border border-[#3A3A3A]"
+              }`}
+            >
+              {currentComp.result}
             </span>
-            <h3 className="font-sans font-bold text-[14px] sm:text-[16px] text-[var(--text-primary)] truncate">
-              {title}
+            <h3 className="font-sans font-bold text-[14px] sm:text-[16px] text-white truncate">
+              {currentComp.event}
             </h3>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
-            {images.length > 1 && (
-              <span className="font-plex-mono text-[11px] sm:text-[12px] text-[var(--text-tertiary)] font-medium">
-                {currentIndex + 1} / {images.length}
-              </span>
-            )}
+            <span className="font-plex-mono text-[11px] sm:text-[12px] px-2.5 py-0.5 rounded-[12px] bg-[#222222] text-[#D1D1D1] border border-[#333333]">
+              {currentIndex + 1} / {competitions.length}
+            </span>
 
             <button
               type="button"
               onClick={onClose}
               aria-label="Close modal"
-              className="w-8 h-8 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] hover:border-[var(--accent)] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              className="w-8 h-8 rounded-[4px] border border-[#333333] bg-[#222222] text-[#D1D1D1] hover:text-white hover:bg-[#333333] hover:border-[var(--accent)] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             >
               <AppIcon name="close" className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        {/* Main Image Frame */}
-        <div className="relative flex-1 min-h-[300px] sm:min-h-[460px] max-h-[70vh] bg-black/40 flex items-center justify-center p-2 sm:p-4 select-none">
-          <div className="relative w-full h-full min-h-[300px] sm:min-h-[460px] flex items-center justify-center">
-            <Image
-              src={images[currentIndex]}
-              alt={`${title} - Photo ${currentIndex + 1}`}
-              fill
-              className="object-contain"
-              sizes="(max-width: 1024px) 100vw, 896px"
-              priority
-            />
-          </div>
+        {/* Center: Image Frame */}
+        <div className="relative w-full h-[45vh] sm:h-[55vh] md:h-[62vh] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
+          {currentImage ? (
+            <div className="relative w-full h-full">
+              <Image
+                src={currentImage}
+                alt={`${currentComp.event} - Banner`}
+                fill
+                className="object-contain"
+                sizes="(max-width: 1024px) 100vw, 900px"
+                priority
+              />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
+              <AppIcon name="award" className="w-8 h-8 mb-2 opacity-50" />
+              <span>No image preview available</span>
+            </div>
+          )}
 
-          {/* Navigation Controls (Only if multiple images) */}
-          {images.length > 1 && (
+          {/* Navigation Controls */}
+          {competitions.length > 1 && (
             <>
               <button
                 type="button"
                 onClick={handlePrev}
-                aria-label="Previous image"
-                className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                aria-label="Previous competition"
+                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                <svg className="w-5 h-5 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
 
               <button
                 type="button"
                 onClick={handleNext}
-                aria-label="Next image"
-                className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                aria-label="Next competition"
+                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                <svg className="w-5 h-5 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
             </>
           )}
         </div>
 
-        {/* Modal Thumbnail Strip (if multiple images) */}
-        {images.length > 1 && (
-          <div className="flex items-center justify-center gap-2 px-4 py-3 border-t border-[var(--border-default)] bg-[var(--surface-base)] overflow-x-auto">
-            {images.map((img, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setCurrentIndex(idx)}
-                className={`relative w-12 h-12 rounded-[4px] overflow-hidden border-2 transition-all shrink-0 ${
-                  currentIndex === idx
-                    ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/30 scale-105"
-                    : "border-transparent opacity-60 hover:opacity-100"
-                }`}
-              >
-                <Image
-                  src={img}
-                  alt={`Thumbnail ${idx + 1}`}
-                  fill
-                  className="object-cover"
-                />
-              </button>
-            ))}
+        {/* Footer Bar: Event Info & Thumbnail Strip */}
+        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-3">
+          <div className="flex items-center justify-between text-[11px] sm:text-[12px] font-plex-mono text-[#9A9A9A]">
+            <span className="text-[#A8CDE4] font-semibold truncate pr-2">
+              {currentComp.event}
+            </span>
+            <span className="shrink-0">{currentComp.date}</span>
           </div>
-        )}
+
+          {/* Thumbnail Strip */}
+          {competitions.length > 1 && (
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1">
+              {competitions.map((comp, idx) => {
+                const thumb = comp.images && comp.images.length > 0 ? comp.images[0] : null;
+
+                return (
+                  <button
+                    key={comp.id}
+                    type="button"
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`relative w-14 h-10 sm:w-16 sm:h-11 rounded-[4px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
+                      currentIndex === idx
+                        ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105"
+                        : "border-[#333333] opacity-60 hover:opacity-100"
+                    }`}
+                    title={comp.event}
+                  >
+                    {thumb ? (
+                      <Image
+                        src={thumb}
+                        alt={comp.event}
+                        fill
+                        className="object-cover"
+                        sizes="64px"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center font-plex-mono text-[9px] text-[#666666]">
+                        N/A
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 }
-

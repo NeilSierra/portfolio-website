@@ -67,7 +67,7 @@ export function CertificationModal({
       role="dialog"
       aria-modal="true"
       aria-label={`Certificate viewer: ${currentCert.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 animate-fade-in"
       onClick={onClose}
     >
       <div
@@ -75,8 +75,8 @@ export function CertificationModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="h-12 px-4 bg-[#161616] border-b border-[#2E2E2E] flex items-center justify-between gap-3 shrink-0">
-          <div className="flex items-center gap-2.5 min-w-0">
+        <div className="h-12 px-4 sm:px-6 bg-[#161616] border-b border-[#2E2E2E] flex items-center justify-between gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0 pr-2">
             <AppIcon name="certificate" className="w-4 h-4 text-[var(--accent)] shrink-0" />
             <span className="font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider text-[#A8CDE4] truncate">
               {currentCert.issuer}
@@ -87,7 +87,7 @@ export function CertificationModal({
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2.5 shrink-0">
             {/* Counter Badge */}
             <span className="font-plex-mono text-[11px] px-2.5 py-0.5 rounded-[12px] bg-[#222222] text-[#D1D1D1] border border-[#333333]">
               {currentIndex + 1} / {certifications.length}
@@ -98,7 +98,7 @@ export function CertificationModal({
               type="button"
               onClick={onClose}
               aria-label="Close certificate viewer"
-              className="w-8 h-8 rounded-[4px] bg-[#222222] hover:bg-[#333333] text-[#D1D1D1] hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              className="w-8 h-8 rounded-[4px] border border-[#333333] bg-[#222222] hover:bg-[#333333] hover:border-[var(--accent)] text-[#D1D1D1] hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             >
               <AppIcon name="close" className="w-4 h-4" />
             </button>
@@ -106,9 +106,9 @@ export function CertificationModal({
         </div>
 
         {/* Center: Image Display Frame */}
-        <div className="relative flex-1 min-h-[280px] sm:min-h-[420px] md:min-h-[500px] bg-[#0A0A0A] flex items-center justify-center p-3 sm:p-6 overflow-hidden">
-          {currentCert.imageUrl && (
-            <div className="relative w-full h-full min-h-[260px] sm:min-h-[400px] md:min-h-[480px]">
+        <div className="relative w-full h-[45vh] sm:h-[55vh] md:h-[62vh] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
+          {currentCert.imageUrl ? (
+            <div className="relative w-full h-full">
               <Image
                 src={currentCert.imageUrl}
                 alt={currentCert.title}
@@ -117,6 +117,11 @@ export function CertificationModal({
                 className="object-contain"
                 priority
               />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
+              <AppIcon name="certificate" className="w-8 h-8 mb-2 opacity-50" />
+              <span>No image preview available</span>
             </div>
           )}
 
@@ -127,10 +132,10 @@ export function CertificationModal({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous certificate"
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-md"
+                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
               >
                 <svg className="w-5 h-5 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
 
@@ -138,31 +143,66 @@ export function CertificationModal({
                 type="button"
                 onClick={handleNext}
                 aria-label="Next certificate"
-                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-md"
+                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
               >
                 <svg className="w-5 h-5 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
                 </svg>
               </button>
             </>
           )}
         </div>
 
-        {/* Bottom Bar: Title & Category */}
-        <div className="p-3.5 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-left">
-          <div className="min-w-0">
-            <h4 className="text-[14px] sm:text-[16px] font-bold text-[#F9F9F9] leading-snug truncate">
-              {currentCert.title}
-            </h4>
-            <p className="font-plex-mono text-[11px] text-[#9A9A9A] mt-0.5">
-              Verified Issuer: <span className="text-[#A8CDE4]">{currentCert.issuer}</span>
-            </p>
+        {/* Bottom Bar: Title & Thumbnail Strip */}
+        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-left">
+            <div className="min-w-0">
+              <h4 className="text-[14px] sm:text-[15px] font-bold text-[#F9F9F9] leading-snug truncate">
+                {currentCert.title}
+              </h4>
+              <p className="font-plex-mono text-[11px] text-[#9A9A9A] mt-0.5">
+                Verified Issuer: <span className="text-[#A8CDE4]">{currentCert.issuer}</span>
+              </p>
+            </div>
+
+            {currentCert.category && (
+              <span className="self-start sm:self-auto font-plex-mono text-[10px] font-semibold uppercase px-2.5 py-0.5 rounded-[3px] bg-[var(--accent)] text-white shrink-0 tracking-wider">
+                {currentCert.category}
+              </span>
+            )}
           </div>
 
-          {currentCert.category && (
-            <span className="self-start sm:self-auto font-plex-mono text-[10px] font-semibold uppercase px-2.5 py-1 rounded-[4px] bg-[var(--accent)] text-white shrink-0 tracking-wider">
-              {currentCert.category}
-            </span>
+          {/* Thumbnail Strip */}
+          {certifications.length > 1 && (
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1">
+              {certifications.map((cert, idx) => (
+                <button
+                  key={cert.id}
+                  type="button"
+                  onClick={() => setCurrentIndex(idx)}
+                  className={`relative w-14 h-10 sm:w-16 sm:h-11 rounded-[4px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
+                    currentIndex === idx
+                      ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105"
+                      : "border-[#333333] opacity-60 hover:opacity-100"
+                  }`}
+                  title={cert.title}
+                >
+                  {cert.imageUrl ? (
+                    <Image
+                      src={cert.imageUrl}
+                      alt={cert.title}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center font-plex-mono text-[9px] text-[#666666]">
+                      N/A
+                    </div>
+                  )}
+                </button>
+              ))}
+            </div>
           )}
         </div>
       </div>

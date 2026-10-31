@@ -2,25 +2,20 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { portfolioData, HackathonItem } from "@/data/portfolio";
+import { portfolioData } from "@/data/portfolio";
 import { AppIcon } from "./AppIcon";
 import { CompetitionModal } from "./CompetitionModal";
 
 export default function Experience() {
   const { experience } = portfolioData;
-  const [selectedCompetition, setSelectedCompetition] = useState<HackathonItem | null>(null);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [selectedCompIndex, setSelectedCompIndex] = useState<number | null>(null);
 
-  const openGallery = (competition: HackathonItem, index = 0) => {
-    if (competition.images && competition.images.length > 0) {
-      setSelectedCompetition(competition);
-      setSelectedImageIndex(index);
-    }
+  const openGallery = (index: number) => {
+    setSelectedCompIndex(index);
   };
 
   const closeGallery = () => {
-    setSelectedCompetition(null);
-    setSelectedImageIndex(0);
+    setSelectedCompIndex(null);
   };
 
   return (
@@ -49,7 +44,7 @@ export default function Experience() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 scroll-fade">
-            {experience.hackathons.map((comp) => {
+            {experience.hackathons.map((comp, idx) => {
               const hasImages = Boolean(comp.images && comp.images.length > 0);
               const isWinner = comp.result.toLowerCase().includes("winner");
 
@@ -62,13 +57,13 @@ export default function Experience() {
                     {/* Visual Media Frame if images exist */}
                     {hasImages && (
                       <div
-                        onClick={() => openGallery(comp, 0)}
+                        onClick={() => openGallery(idx)}
                         className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden cursor-pointer border-b border-[var(--border-default)]"
                         role="button"
                         tabIndex={0}
                         onKeyDown={(e) => {
                           if (e.key === "Enter" || e.key === " ") {
-                            openGallery(comp, 0);
+                            openGallery(idx);
                           }
                         }}
                         aria-label={`Open photo gallery for ${comp.event}`}
@@ -144,7 +139,7 @@ export default function Experience() {
                     {hasImages ? (
                       <button
                         type="button"
-                        onClick={() => openGallery(comp, 0)}
+                        onClick={() => openGallery(idx)}
                         className="w-full h-9 px-3 rounded-[4px] bg-[var(--surface-default)] hover:bg-[var(--surface-raised)] text-[var(--text-primary)] font-plex-mono text-[11px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[var(--border-default)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                       >
                         <AppIcon name="external-link" className="w-3.5 h-3.5" />
@@ -229,15 +224,13 @@ export default function Experience() {
         )}
       </div>
 
-      {/* Multi-image Modal Viewer */}
-      {selectedCompetition && (
+      {/* Competition Lightbox Modal */}
+      {selectedCompIndex !== null && (
         <CompetitionModal
-          isOpen={Boolean(selectedCompetition)}
+          isOpen={selectedCompIndex !== null}
           onClose={closeGallery}
-          title={selectedCompetition.event}
-          result={selectedCompetition.result}
-          images={selectedCompetition.images || []}
-          initialIndex={selectedImageIndex}
+          competitions={experience.hackathons}
+          initialIndex={selectedCompIndex}
         />
       )}
     </section>

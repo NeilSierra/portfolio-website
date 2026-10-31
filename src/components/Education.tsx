@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { AppIcon } from "./AppIcon";
@@ -10,6 +10,22 @@ export default function Education() {
   const { education } = portfolioData;
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedCertIndex, setSelectedCertIndex] = useState<number | null>(null);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [itemsPerPage, setItemsPerPage] = useState<number>(6);
+
+  // Dynamic capacity to strictly maintain 2 rows across all screen breakpoints
+  useEffect(() => {
+    const updateCapacity = () => {
+      const width = window.innerWidth;
+      if (width >= 1024) setItemsPerPage(6); // 3 cols * 2 rows = 6
+      else if (width >= 640) setItemsPerPage(4); // 2 cols * 2 rows = 4
+      else setItemsPerPage(4); // 1-2 cols * 2 rows = 4
+    };
+
+    updateCapacity();
+    window.addEventListener("resize", updateCapacity);
+    return () => window.removeEventListener("resize", updateCapacity);
+  }, []);
 
   // Extract unique categories
   const categories = [
@@ -21,6 +37,20 @@ export default function Education() {
     activeCategory === "All"
       ? education.certifications
       : education.certifications.filter((c) => c.category === activeCategory);
+
+  const totalItems = filteredCerts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  // Paginated slice for current page
+  const paginatedCerts = filteredCerts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleCategoryChange = (cat: string) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  };
 
   const openModal = (index: number) => {
     setSelectedCertIndex(index);
@@ -171,7 +201,7 @@ export default function Education() {
           </div>
         </div>
 
-        {/* Full-width Certifications Showcase */}
+        {/* Full-width Certifications Showcase (2 Rows Max + Pagination) */}
         {education.certifications.length > 0 && (
           <div className="mt-16 pt-12 border-t border-[var(--border-default)] scroll-fade">
             {/* Header */}
@@ -206,7 +236,7 @@ export default function Education() {
                   <button
                     key={cat}
                     type="button"
-                    onClick={() => setActiveCategory(cat)}
+                    onClick={() => handleCategoryChange(cat)}
                     className={`font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider px-3 py-1.5 rounded-[4px] transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
                       activeCategory === cat
                         ? "bg-[var(--text-primary)] text-[var(--surface-base)] font-bold shadow-xs"
@@ -219,82 +249,140 @@ export default function Education() {
               })}
             </div>
 
-            {/* Certifications Responsive Grid (3 columns on lg, 2 on sm/md, 1 on base) */}
+            {/* Certifications Responsive Grid (Strictly 2 Rows Max) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-              {filteredCerts.map((cert, idx) => (
-                <div
-                  key={cert.id}
-                  className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group"
-                >
-                  <div>
-                    {/* Visual Preview Frame */}
-                    {cert.imageUrl && (
-                      <div
-                        onClick={() => openModal(idx)}
-                        className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden cursor-pointer border-b border-[var(--border-default)]"
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                          if (e.key === "Enter" || e.key === " ") {
-                            openModal(idx);
-                          }
-                        }}
-                        aria-label={`View certificate for ${cert.title}`}
-                      >
-                        <Image
-                          src={cert.imageUrl}
-                          alt={cert.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
+              {paginatedCerts.map((cert, pageIdx) => {
+                const globalIdx = (currentPage - 1) * itemsPerPage + pageIdx;
 
-                        {/* Category Badge Overlay */}
-                        {cert.category && (
-                          <div className="absolute top-2.5 left-2.5">
-                            <span className="font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 uppercase tracking-wider">
-                              {cert.category}
-                            </span>
+                return (
+                  <div
+                    key={cert.id}
+                    className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group"
+                  >
+                    <div>
+                      {/* Visual Preview Frame */}
+                      {cert.imageUrl && (
+                        <div
+                          onClick={() => openModal(globalIdx)}
+                          className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden cursor-pointer border-b border-[var(--border-default)]"
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              openModal(globalIdx);
+                            }
+                          }}
+                          aria-label={`View certificate for ${cert.title}`}
+                        >
+                          <Image
+                            src={cert.imageUrl}
+                            alt={cert.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+
+                          {/* Category Badge Overlay */}
+                          {cert.category && (
+                            <div className="absolute top-2.5 left-2.5">
+                              <span className="font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 uppercase tracking-wider">
+                                {cert.category}
+                              </span>
+                            </div>
+                          )}
+
+                          {/* Inspect Indicator Overlay */}
+                          <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                            <AppIcon name="external-link" className="w-3 h-3" />
+                            <span>Inspect</span>
                           </div>
-                        )}
-
-                        {/* Inspect Indicator Overlay */}
-                        <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                          <AppIcon name="external-link" className="w-3 h-3" />
-                          <span>Inspect</span>
                         </div>
-                      </div>
-                    )}
+                      )}
 
-                    {/* Metadata Content */}
-                    <div className="p-4 sm:p-5">
-                      <div className="flex items-center justify-between text-[11px] font-plex-mono text-[var(--text-tertiary)] mb-1.5">
-                        <span className="text-[var(--accent)] font-semibold truncate pr-2">
-                          {cert.issuer}
-                        </span>
-                        <span className="shrink-0">{cert.year}</span>
-                      </div>
+                      {/* Metadata Content */}
+                      <div className="p-4 sm:p-5">
+                        <div className="flex items-center justify-between text-[11px] font-plex-mono text-[var(--text-tertiary)] mb-1.5">
+                          <span className="text-[var(--accent)] font-semibold truncate pr-2">
+                            {cert.issuer}
+                          </span>
+                          <span className="shrink-0">{cert.year}</span>
+                        </div>
 
-                      <h4 className="text-[15px] sm:text-[16px] font-bold text-[var(--text-primary)] leading-snug line-clamp-2">
-                        {cert.title}
-                      </h4>
+                        <h4 className="text-[15px] sm:text-[16px] font-bold text-[var(--text-primary)] leading-snug line-clamp-2">
+                          {cert.title}
+                        </h4>
+                      </div>
+                    </div>
+
+                    {/* Card Action Button */}
+                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
+                      <button
+                        type="button"
+                        onClick={() => openModal(globalIdx)}
+                        className="w-full h-9 px-3 rounded-[4px] bg-[var(--surface-default)] hover:bg-[var(--surface-raised)] text-[var(--text-primary)] font-plex-mono text-[11px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[var(--border-default)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                      >
+                        <AppIcon name="external-link" className="w-3.5 h-3.5" />
+                        <span>View Certificate</span>
+                      </button>
                     </div>
                   </div>
-
-                  {/* Card Action Button */}
-                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
-                    <button
-                      type="button"
-                      onClick={() => openModal(idx)}
-                      className="w-full h-9 px-3 rounded-[4px] bg-[var(--surface-default)] hover:bg-[var(--surface-raised)] text-[var(--text-primary)] font-plex-mono text-[11px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[var(--border-default)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-                    >
-                      <AppIcon name="external-link" className="w-3.5 h-3.5" />
-                      <span>View Certificate</span>
-                    </button>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+
+            {/* Pagination Controls (Only when total items exceed 2 rows) */}
+            {totalPages > 1 && (
+              <div className="mt-8 pt-6 border-t border-[var(--border-default)] flex flex-col sm:flex-row items-center justify-between gap-4 font-plex-mono text-[12px] scroll-fade">
+                <span className="text-[var(--text-tertiary)] uppercase tracking-wider text-[11px] sm:text-[12px]">
+                  SHOWING {(currentPage - 1) * itemsPerPage + 1}–
+                  {Math.min(currentPage * itemsPerPage, totalItems)} OF {totalItems} ACCREDITATIONS
+                </span>
+
+                <div className="flex items-center gap-1.5">
+                  {/* Prev Button */}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    aria-label="Previous page"
+                  >
+                    <span>←</span>
+                    <span className="hidden xs:inline">PREV</span>
+                  </button>
+
+                  {/* Numbered Page Buttons */}
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+                    <button
+                      key={pg}
+                      type="button"
+                      onClick={() => setCurrentPage(pg)}
+                      className={`w-8 h-8 rounded-[4px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
+                        currentPage === pg
+                          ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-xs"
+                          : "border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)]"
+                      }`}
+                      aria-label={`Page ${pg}`}
+                      aria-current={currentPage === pg ? "page" : undefined}
+                    >
+                      {pg}
+                    </button>
+                  ))}
+
+                  {/* Next Button */}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    aria-label="Next page"
+                  >
+                    <span className="hidden xs:inline">NEXT</span>
+                    <span>→</span>
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
