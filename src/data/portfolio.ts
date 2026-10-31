@@ -1,12 +1,22 @@
+export interface ProjectSpecification {
+  label: string;
+  value: string;
+  iconName: string;
+}
+
 export interface Project {
   id: string;
   title: string;
+  category?: string;
   flagship?: boolean;
   summary: string;
-  role: string;
+  role?: string;
   techStack: string[];
   liveUrl?: string;
   githubUrl?: string;
+  videoMp4?: string;
+  videoWebm?: string;
+  specifications?: ProjectSpecification[];
 }
 
 export interface SkillCategory {
@@ -173,43 +183,61 @@ export const portfolioData = {
   ] as SkillCategory[],
   projects: [
     {
-      id: "project-1",
-      title: "Full-Stack Enterprise Hub",
+      id: "landbank-iaccess-redesign",
+      title: "LandBank iAccess Redesign",
+      category: "Full-Stack Web Application // UI/UX Redesign",
       flagship: true,
-      summary: "Modern web architecture with dynamic API routes, role-based access control, and responsive interfaces.",
-      role: "Solo Developer — UI/UX in Figma, database schema, REST API endpoints, and React frontend.",
-      techStack: ["Next.js", "TailwindCSS", "Node.js", "PostgreSQL", "Supabase"],
-      liveUrl: "https://github.com/NeilSierra",
-      githubUrl: "https://github.com/NeilSierra",
-    },
-    {
-      id: "project-2",
-      title: "Mobile Task & Workflow Companion",
-      flagship: false,
-      summary: "Native Android utility with offline-first synchronization and task management.",
-      role: "Mobile Developer — UI layouts and local SQLite storage routines in Android Studio.",
-      techStack: ["Android Studio", "Kotlin", "SQLite", "Material Design"],
-      liveUrl: "https://github.com/NeilSierra",
-      githubUrl: "https://github.com/NeilSierra",
-    },
-    {
-      id: "project-3",
-      title: "Database Management Portal",
-      flagship: false,
-      summary: "Robust PHP & MySQL administrative portal with relational reporting and security middleware.",
-      role: "Backend & Database Developer — Normalized 3NF schemas, SQL triggers, and prepared PHP handlers.",
-      techStack: ["PHP", "MySQL", "JavaScript", "CSS"],
-      liveUrl: "https://github.com/NeilSierra",
-      githubUrl: "https://github.com/NeilSierra",
-    },
-    {
-      id: "project-4",
-      title: "Cloud API & Analytics Service",
-      flagship: false,
-      summary: "Lightweight Express.js REST service delivering aggregated telemetry and data endpoints.",
-      role: "Backend Developer — API routing, rate limiting middleware, and Docker containerization.",
-      techStack: ["Express.js", "Node.js", "PostgreSQL", "Docker"],
-      liveUrl: "https://github.com/NeilSierra",
+      summary:
+        "A modern, accessible, and responsive redesign of the Land Bank of the Philippines (LANDBANK) iAccess digital banking web portal.",
+      role: "Lead Developer — Modern banking portal architecture, responsive design system, and component engineering.",
+      videoMp4: "/assets/projects/iaccess-redesign.mp4",
+      videoWebm: "/assets/projects/iaccess-redesign.webm",
+      techStack: [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Lucide React",
+        "ESLint",
+        "Vercel",
+      ],
+      specifications: [
+        {
+          label: "Framework",
+          value: "Next.js 16 (App Router, Turbopack)",
+          iconName: "Next.js",
+        },
+        {
+          label: "Frontend Library",
+          value: "React 19",
+          iconName: "React",
+        },
+        {
+          label: "Language",
+          value: "TypeScript 5",
+          iconName: "TypeScript",
+        },
+        {
+          label: "Styling",
+          value: "Tailwind CSS v4",
+          iconName: "Tailwind CSS",
+        },
+        {
+          label: "Icons",
+          value: "Lucide React",
+          iconName: "Lucide React",
+        },
+        {
+          label: "Linting & Code Quality",
+          value: "ESLint 9 (Flat config)",
+          iconName: "ESLint",
+        },
+        {
+          label: "Deployment Target",
+          value: "Vercel",
+          iconName: "Vercel",
+        },
+      ],
       githubUrl: "https://github.com/NeilSierra",
     },
   ] as Project[],

@@ -27,6 +27,16 @@ const SKILL_ICON_MAP: Record<string, { dark: string; light?: string }> = {
   "visual studio": { dark: "VisualStudio-Dark.svg", light: "VisualStudio-Light.svg" },
   docker: { dark: "Docker.svg" },
   vercel: { dark: "Vercel-Dark.svg", light: "Vercel-Light.svg" },
+  react: { dark: "React-Dark.svg", light: "React-Light.svg" },
+  "react 19": { dark: "React-Dark.svg", light: "React-Light.svg" },
+  "next.js 16": { dark: "NextJS-Dark.svg", light: "NextJS-Light.svg" },
+  "typescript 5": { dark: "TypeScript.svg" },
+  "tailwind css v4": { dark: "TailwindCSS-Dark.svg", light: "TailwindCSS-Light.svg" },
+  "tailwind css": { dark: "TailwindCSS-Dark.svg", light: "TailwindCSS-Light.svg" },
+  eslint: { dark: "ESLint.svg" },
+  "eslint 9": { dark: "ESLint.svg" },
+  lucide: { dark: "Lucide.svg" },
+  "lucide react": { dark: "Lucide.svg" },
 };
 
 export function TechIcon({ name, className = "w-6 h-6" }: { name: string; className?: string }) {
