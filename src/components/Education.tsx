@@ -79,8 +79,8 @@ export default function Education() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-          {/* Main Education Card */}
-          <div className="lg:col-span-7 card-ring p-5 sm:p-8 border border-[var(--border-default)] scroll-scale">
+          {/* Main Education Card (Sticky on desktop) */}
+          <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 card-ring p-5 sm:p-8 border border-[var(--border-default)] scroll-scale">
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <div className="relative w-12 h-12 rounded-[6px] bg-white border border-[var(--border-default)] p-1.5 flex items-center justify-center shrink-0 shadow-xs">
                 <Image
