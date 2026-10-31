@@ -54,6 +54,8 @@ export interface CertificationItem {
   title: string;
   issuer: string;
   year: string;
+  category?: string;
+  imageUrl?: string;
   credentialUrl?: string;
 }
 
@@ -82,7 +84,7 @@ export const portfolioData = {
         icon: "cube",
       },
       {
-        value: "14",
+        value: "13",
         label: "CERTIFICATIONS",
         icon: "certificate",
       },
@@ -307,7 +309,112 @@ export const portfolioData = {
         note: "Consistent academic achiever, graduated as the 3rd Honorable Mention of the school.",
       },
     ] as AchievementItem[],
-    certifications: [] as CertificationItem[],
+    certifications: [
+      {
+        id: "cert-1",
+        title: "IT Specialist — Databases",
+        issuer: "Certiport",
+        category: "Databases",
+        year: "2025",
+        imageUrl: "/assets/certifications/it-specialist-databases.png",
+      },
+      {
+        id: "cert-2",
+        title: "IT Specialist — HTML and CSS",
+        issuer: "Certiport",
+        category: "Frontend",
+        year: "2025",
+        imageUrl: "/assets/certifications/it-specialist-html-and-css.png",
+      },
+      {
+        id: "cert-3",
+        title: "IT Specialist — Python",
+        issuer: "Certiport",
+        category: "Programming",
+        year: "2025",
+        imageUrl: "/assets/certifications/it-specialist-python.png",
+      },
+      {
+        id: "cert-4",
+        title: "CCNA: Introduction to Networks",
+        issuer: "Cisco Networking Academy",
+        category: "Networking",
+        year: "2025",
+        imageUrl: "/assets/certifications/ccna-1-introduction-to-networking-certificate.png",
+      },
+      {
+        id: "cert-5",
+        title: "Python Essentials 1",
+        issuer: "Cisco & Python Institute",
+        category: "Programming",
+        year: "2025",
+        imageUrl: "/assets/certifications/python-essentials-1-certificate.png",
+      },
+      {
+        id: "cert-6",
+        title: "Python Essentials 2",
+        issuer: "Cisco & Python Institute",
+        category: "Programming",
+        year: "2025",
+        imageUrl: "/assets/certifications/python-essentials-2-certificate.png",
+      },
+      {
+        id: "cert-7",
+        title: "SAP Business One (SAP B1)",
+        issuer: "SAP",
+        category: "Enterprise ERP",
+        year: "2025",
+        imageUrl: "/assets/certifications/sap-b1-certificate-of-completion.png",
+      },
+      {
+        id: "cert-8",
+        title: "BPI DataWaveSprint AI Development — Module 1",
+        issuer: "Bank of the Philippine Islands (BPI)",
+        category: "AI & Innovation",
+        year: "2025",
+        imageUrl: "/assets/certifications/bpi-datawavesprint-ai-dev-module-1-2025-08.png",
+      },
+      {
+        id: "cert-9",
+        title: "BPI DataWaveSprint AI Development — Module 2",
+        issuer: "Bank of the Philippine Islands (BPI)",
+        category: "AI & Innovation",
+        year: "2025",
+        imageUrl: "/assets/certifications/bpi-datawavesprint-ai-dev-module-2-2025-08.png",
+      },
+      {
+        id: "cert-10",
+        title: "BPI DataWaveSprint AI Development — Module 3",
+        issuer: "Bank of the Philippine Islands (BPI)",
+        category: "AI & Innovation",
+        year: "2025",
+        imageUrl: "/assets/certifications/bpi-datawavesprint-ai-dev-module-3-2025-08.png",
+      },
+      {
+        id: "cert-11",
+        title: "CodeChum NPC 2025 — Group Stage 3 (5th Place)",
+        issuer: "CodeChum",
+        category: "Competitive Programming",
+        year: "2025",
+        imageUrl: "/assets/certifications/codechum-national-programming-challenge-2025-group-stage-3-5th-place.png",
+      },
+      {
+        id: "cert-12",
+        title: "CodeChum NPC 2025 — Group Stage 3 (Participation)",
+        issuer: "CodeChum",
+        category: "Competitive Programming",
+        year: "2025",
+        imageUrl: "/assets/certifications/codechum-national-programming-challenge-2025-group-stage-3-participation.png",
+      },
+      {
+        id: "cert-13",
+        title: "CyberJump Seminar — Cybersecurity & Emerging Tech",
+        issuer: "CyberJump",
+        category: "Cybersecurity",
+        year: "2025",
+        imageUrl: "/assets/certifications/cyberjump-seminar.png",
+      },
+    ] as CertificationItem[],
   },
   contact: {
     heading: "Let's Work Together",

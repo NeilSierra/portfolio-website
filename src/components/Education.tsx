@@ -1,14 +1,39 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { AppIcon } from "./AppIcon";
+import { CertificationModal } from "./CertificationModal";
 
 export default function Education() {
   const { education } = portfolioData;
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [selectedCertIndex, setSelectedCertIndex] = useState<number | null>(null);
+
+  // Extract unique categories
+  const categories = [
+    "All",
+    ...Array.from(new Set(education.certifications.map((c) => c.category).filter(Boolean) as string[])),
+  ];
+
+  const filteredCerts =
+    activeCategory === "All"
+      ? education.certifications
+      : education.certifications.filter((c) => c.category === activeCategory);
+
+  const openModal = (index: number) => {
+    setSelectedCertIndex(index);
+  };
+
+  const closeModal = () => {
+    setSelectedCertIndex(null);
+  };
 
   return (
     <section id="education" className="py-20 sm:py-24 border-t border-[var(--border-default)]">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+        {/* Section Header */}
         <div className="mb-12 scroll-fade">
           <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
             ACADEMICS &amp; HONORS
@@ -76,7 +101,7 @@ export default function Education() {
             </div>
           </div>
 
-          {/* Achievements & Academic Honors */}
+          {/* Scholastic Achievements & Honors */}
           <div className="lg:col-span-5 card-ring p-5 sm:p-7 border border-[var(--border-default)]">
             <div className="flex items-center justify-between gap-3 mb-6 pb-3 border-b border-[var(--border-default)]">
               <div className="flex items-center gap-2.5">
@@ -143,28 +168,146 @@ export default function Education() {
                 </div>
               ))}
             </div>
-
-            {/* Certifications Block: automatically displayed if populated */}
-            {education.certifications.length > 0 && (
-              <div className="mt-6 pt-6 border-t border-[var(--border-default)]">
-                <span className="font-plex-mono text-[11px] uppercase tracking-wider text-[var(--text-tertiary)] block mb-3">
-                  CERTIFICATIONS
-                </span>
-                <div className="space-y-3">
-                  {education.certifications.map((cert) => (
-                    <div key={cert.id} className="text-[13px]">
-                      <span className="font-medium text-[var(--text-primary)]">{cert.title}</span>
-                      <span className="text-[var(--text-tertiary)] block text-[12px]">
-                        {cert.issuer} • {cert.year}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         </div>
+
+        {/* Full-width Certifications Showcase */}
+        {education.certifications.length > 0 && (
+          <div className="mt-16 pt-12 border-t border-[var(--border-default)] scroll-fade">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+              <div>
+                <div className="flex items-center gap-2 font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mb-1">
+                  <AppIcon name="certificate" className="w-4 h-4 text-[var(--accent)] shrink-0" />
+                  <span>CREDENTIALS</span>
+                  <span className="text-[var(--text-tertiary)]">{"//"}</span>
+                  <span className="text-[var(--text-secondary)]">LICENSES &amp; CERTIFICATIONS</span>
+                </div>
+                <h3 className="font-serif-display text-[26px] sm:text-[32px] font-bold text-[var(--text-primary)] tracking-tight">
+                  Verified Certifications
+                </h3>
+              </div>
+
+              {/* Counter badge */}
+              <div className="font-plex-mono text-[11px] sm:text-[12px] text-[var(--accent)] font-semibold px-3 py-1.5 rounded-[4px] bg-[var(--fill-subtle)] border border-[var(--border-default)] self-start sm:self-auto">
+                {education.certifications.length} Industry Accreditations
+              </div>
+            </div>
+
+            {/* Category Filter Tabs */}
+            <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 border-b border-[var(--border-default)] no-scrollbar -mx-4 px-4 sm:-mx-0 sm:px-0">
+              {categories.map((cat) => {
+                const count =
+                  cat === "All"
+                    ? education.certifications.length
+                    : education.certifications.filter((c) => c.category === cat).length;
+
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActiveCategory(cat)}
+                    className={`font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider px-3 py-1.5 rounded-[4px] transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
+                      activeCategory === cat
+                        ? "bg-[var(--text-primary)] text-[var(--surface-base)] font-bold shadow-xs"
+                        : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] border border-[var(--border-default)]"
+                    }`}
+                  >
+                    {cat} ({count})
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Certifications Responsive Grid (3 columns on lg, 2 on sm/md, 1 on base) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+              {filteredCerts.map((cert, idx) => (
+                <div
+                  key={cert.id}
+                  className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group"
+                >
+                  <div>
+                    {/* Visual Preview Frame */}
+                    {cert.imageUrl && (
+                      <div
+                        onClick={() => openModal(idx)}
+                        className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden cursor-pointer border-b border-[var(--border-default)]"
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            openModal(idx);
+                          }
+                        }}
+                        aria-label={`View certificate for ${cert.title}`}
+                      >
+                        <Image
+                          src={cert.imageUrl}
+                          alt={cert.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+
+                        {/* Category Badge Overlay */}
+                        {cert.category && (
+                          <div className="absolute top-2.5 left-2.5">
+                            <span className="font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 uppercase tracking-wider">
+                              {cert.category}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Inspect Indicator Overlay */}
+                        <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                          <AppIcon name="external-link" className="w-3 h-3" />
+                          <span>Inspect</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Metadata Content */}
+                    <div className="p-4 sm:p-5">
+                      <div className="flex items-center justify-between text-[11px] font-plex-mono text-[var(--text-tertiary)] mb-1.5">
+                        <span className="text-[var(--accent)] font-semibold truncate pr-2">
+                          {cert.issuer}
+                        </span>
+                        <span className="shrink-0">{cert.year}</span>
+                      </div>
+
+                      <h4 className="text-[15px] sm:text-[16px] font-bold text-[var(--text-primary)] leading-snug line-clamp-2">
+                        {cert.title}
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Card Action Button */}
+                  <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
+                    <button
+                      type="button"
+                      onClick={() => openModal(idx)}
+                      className="w-full h-9 px-3 rounded-[4px] bg-[var(--surface-default)] hover:bg-[var(--surface-raised)] text-[var(--text-primary)] font-plex-mono text-[11px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[var(--border-default)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    >
+                      <AppIcon name="external-link" className="w-3.5 h-3.5" />
+                      <span>View Certificate</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* Fullscreen Certificate Viewer Lightbox */}
+      {selectedCertIndex !== null && (
+        <CertificationModal
+          isOpen={selectedCertIndex !== null}
+          initialIndex={selectedCertIndex}
+          onClose={closeModal}
+          certifications={filteredCerts}
+        />
+      )}
     </section>
   );
 }
