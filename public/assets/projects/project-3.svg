@@ -1,0 +1,37 @@
+<svg width="600" height="380" viewBox="0 0 600 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="380" fill="#0D0D0D"/>
+  <defs>
+    <pattern id="grid3" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1E1E1E" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="380" fill="url(#grid3)"/>
+
+  <!-- Code/SQL Terminal Specimen -->
+  <rect x="40" y="40" width="520" height="300" rx="6" fill="#050505" stroke="#2E2E2E" stroke-width="1"/>
+  <rect x="40" y="40" width="520" height="32" rx="6 6 0 0" fill="#161616" stroke="#2E2E2E" stroke-width="1"/>
+  <circle cx="60" cy="56" r="4" fill="#444444"/>
+  <circle cx="74" cy="56" r="4" fill="#444444"/>
+  <circle cx="88" cy="56" r="4" fill="#444444"/>
+  <text x="110" y="60" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#9A9A9A">mysql-schema-audit.sql</text>
+
+  <!-- SQL Text Lines -->
+  <text x="70" y="110" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">SELECT</text>
+  <text x="125" y="110" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#F9F9F9">records.id, users.name, records.status</text>
+  <text x="70" y="135" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">FROM</text>
+  <text x="110" y="135" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#A8CDE4">institutional_records</text>
+  <text x="70" y="160" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">INNER JOIN</text>
+  <text x="155" y="160" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#A8CDE4">users</text>
+  <text x="200" y="160" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">ON</text>
+  <text x="225" y="160" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D1D1D1">records.user_id = users.id</text>
+  <text x="70" y="185" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">WHERE</text>
+  <text x="120" y="185" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D1D1D1">audit_flag = 1</text>
+  <text x="70" y="210" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#6FA8CC">ORDER BY</text>
+  <text x="140" y="210" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#D1D1D1">timestamp DESC;</text>
+
+  <!-- Result Banner -->
+  <rect x="70" y="245" width="460" height="60" rx="4" fill="#161616" stroke="#225577" stroke-width="1"/>
+  <text x="90" y="270" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#6FA8CC">PHP &amp; MySQL ADMINISTRATIVE PORTAL</text>
+  <text x="90" y="290" font-family="'Inter', sans-serif" font-size="11" fill="#9A9A9A">3NF Relational Integrity • Prepared Statements • Zero Inconsistencies</text>
+</svg>
+

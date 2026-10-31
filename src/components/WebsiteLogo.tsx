@@ -1,0 +1,14 @@
+export function WebsiteLogo({ className = "w-7 h-7" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 64 64"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M58.4 16.8V39.7637L51.6257 35.8627V20.7002L32 9.40039L15.5712 18.8592L38.7743 32.2082V16.6784L45.5485 20.579V36.1059L58.4 43.4998V47.2L32 62.4L5.59998 47.2V24.6581L12.3743 28.5591V43.2994L32 54.5992L48.0612 45.3515L25.2257 32.2132V47.3208L18.4514 43.4202V28.3159L5.59998 20.922V16.8L32 1.6L58.4 16.8Z" />
+    </svg>
+  );
+}
+
