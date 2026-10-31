@@ -9,7 +9,7 @@ export default function Projects() {
         <div className="mb-10 sm:mb-12 scroll-fade">
           <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
             <span>PROJECTS</span>
-            <span className="text-[var(--text-tertiary)]">//</span>
+            <span className="text-[var(--text-tertiary)]">{"//"}</span>
             <span className="text-[var(--text-tertiary)]">SPECIMEN ARCHIVE</span>
           </div>
           <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">

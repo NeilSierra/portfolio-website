@@ -21,11 +21,13 @@ export function CompetitionModal({
   images,
   initialIndex = 0,
 }: CompetitionModalProps) {
+  const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  useEffect(() => {
+  if (prevInitialIndex !== initialIndex) {
+    setPrevInitialIndex(initialIndex);
     setCurrentIndex(initialIndex);
-  }, [initialIndex, isOpen]);
+  }
 
   const handlePrev = useCallback(() => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));

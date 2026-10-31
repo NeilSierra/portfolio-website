@@ -1,20 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useSyncExternalStore, useState } from "react";
+
+const emptySubscribe = () => () => {};
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
-  useEffect(() => {
-    setMounted(true);
-    const currentTheme =
-      document.documentElement.getAttribute("data-theme") === "dark"
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    if (typeof window !== "undefined") {
+      return document.documentElement.getAttribute("data-theme") === "dark"
         ? "dark"
         : "light";
-    setTheme(currentTheme);
-  }, []);
+    }
+    return "light";
+  });
 
   const toggleTheme = () => {
     const nextTheme = theme === "dark" ? "light" : "dark";
@@ -27,7 +31,7 @@ export default function ThemeToggle() {
     }
   };
 
-  if (!mounted) {
+  if (!isClient) {
     return (
       <div
         className="w-9 h-9 sm:w-10 sm:h-10 rounded-[4px] border border-[var(--border-default)] flex items-center justify-center opacity-50"

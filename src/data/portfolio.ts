@@ -63,7 +63,7 @@ export const portfolioData = {
     description:
       "Portfolio of Neil Sierra, a 3rd-year IT student and full stack developer in Cavite, Philippines. Open to internships and freelance projects.",
     canonicalName: "Neil Sierra",
-    ogImage: "/assets/og-image.png",
+    ogImage: "/assets/og-image.svg",
   },
   hero: {
     name: "Neil Sierra",
