@@ -26,6 +26,7 @@ const SKILL_ICON_MAP: Record<string, { dark: string; light?: string }> = {
   figma: { dark: "Figma-Dark.svg", light: "Figma-Light.svg" },
   "visual studio": { dark: "VisualStudio-Dark.svg", light: "VisualStudio-Light.svg" },
   docker: { dark: "Docker.svg" },
+  vercel: { dark: "Vercel-Dark.svg", light: "Vercel-Light.svg" },
 };
 
 export function TechIcon({ name, className = "w-6 h-6" }: { name: string; className?: string }) {

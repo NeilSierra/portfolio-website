@@ -59,7 +59,7 @@ export interface CertificationItem {
 
 export const portfolioData = {
   meta: {
-    title: "Neil Sierra | Full Stack Developer",
+    title: "Neil Sierra | Portfolio",
     description:
       "Portfolio of Neil Sierra, a 3rd-year IT student and full stack developer in Cavite, Philippines. Open to internships and freelance projects.",
     canonicalName: "Neil Sierra",
@@ -165,6 +165,7 @@ export const portfolioData = {
         { name: "Figma" },
         { name: "Visual Studio" },
         { name: "Docker" },
+        { name: "Vercel" },
       ],
     },
   ] as SkillCategory[],
@@ -321,6 +322,6 @@ export const portfolioData = {
   },
   footer: {
     copyright: "© 2026 Neil Sierra. All rights reserved.",
-    builtWith: "Built with Next.js & Tailwind CSS",
+    builtWith: "Built with Next.js, Tailwind CSS & Vercel",
   },
 };
