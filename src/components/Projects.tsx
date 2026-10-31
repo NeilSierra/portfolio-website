@@ -79,10 +79,15 @@ export default function Projects() {
                     <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
                     <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
-                    <div className="hidden sm:flex items-center gap-1.5 ml-3 px-3 py-0.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--border-default)] text-[var(--text-secondary)] text-[11px]">
+                    <a
+                      href={flagship.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hidden sm:flex items-center gap-1.5 ml-3 px-3 py-0.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--border-default)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors text-[11px]"
+                    >
                       <span className="text-[var(--accent)] font-semibold">https://</span>
-                      <span>iaccess.landbank.redesign.local</span>
-                    </div>
+                      <span>github.com/NeilSierra/iaccess-redesign</span>
+                    </a>
                   </div>
 
                   <div className="inline-flex items-center gap-1.5 text-[var(--accent)] font-semibold text-[10px] uppercase tracking-wider">
@@ -154,13 +159,13 @@ export default function Projects() {
 
               <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
                 <a
-                  href="https://github.com/NeilSierra"
+                  href={flagship.githubUrl || "https://github.com/NeilSierra/iaccess-redesign"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto h-10 px-5 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[13px] sm:text-[14px] flex items-center justify-center gap-2.5 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  <span>Explore Source Repositories</span>
+                  <span>View Source Repository</span>
                   <AppIcon name="external-link" className="w-3.5 h-3.5 opacity-70" />
                 </a>
 

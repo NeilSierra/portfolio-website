@@ -238,7 +238,7 @@ export const portfolioData = {
           iconName: "Vercel",
         },
       ],
-      githubUrl: "https://github.com/NeilSierra",
+      githubUrl: "https://github.com/NeilSierra/iaccess-redesign",
     },
   ] as Project[],
   experience: {
