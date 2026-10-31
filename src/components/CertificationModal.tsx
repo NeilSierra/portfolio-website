@@ -181,9 +181,9 @@ export function CertificationModal({
             )}
           </div>
 
-          {/* Thumbnail Strip with .no-scrollbar */}
+          {/* Thumbnail Strip with styled custom horizontal scrollbar */}
           {certifications.length > 1 && (
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+            <div className="flex items-center gap-2 overflow-x-auto modal-scrollbar-x pt-0.5 pb-2">
               {certifications.map((cert, idx) => (
                 <button
                   key={cert.id}

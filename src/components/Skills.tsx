@@ -86,7 +86,7 @@ export default function Skills() {
             </div>
 
             {/* Tab Navigation (Multi-Page Category Switcher) */}
-            <div className="flex items-center gap-2 overflow-x-auto pt-1.5 pb-4 mb-8 border-b border-[var(--border-default)] no-scrollbar -mx-4 px-4 sm:-mx-1 sm:px-1 scroll-fade">
+            <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-3 mb-8 border-b border-[var(--border-default)] custom-scrollbar-x -mx-4 px-4 sm:-mx-1 sm:px-1 scroll-fade">
               {categories.map((cat) => {
                 const isActive = activeTab === cat;
                 const count =

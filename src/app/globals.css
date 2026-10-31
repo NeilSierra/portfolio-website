@@ -229,6 +229,48 @@ body {
   scrollbar-width: none;
 }
 
+/* Styled Custom Horizontal Scrollbar (Page) */
+.custom-scrollbar-x {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) var(--fill-subtle);
+}
+.custom-scrollbar-x::-webkit-scrollbar {
+  height: 5px;
+}
+.custom-scrollbar-x::-webkit-scrollbar-track {
+  background: var(--fill-subtle);
+  border-radius: 9999px;
+}
+.custom-scrollbar-x::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+.custom-scrollbar-x::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Styled Custom Horizontal Scrollbar (Dark Modal) */
+.modal-scrollbar-x {
+  scrollbar-width: thin;
+  scrollbar-color: #3e3e3e rgba(255, 255, 255, 0.05);
+}
+.modal-scrollbar-x::-webkit-scrollbar {
+  height: 4px;
+}
+.modal-scrollbar-x::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 9999px;
+}
+.modal-scrollbar-x::-webkit-scrollbar-thumb {
+  background: #3e3e3e;
+  border-radius: 9999px;
+  transition: background-color 0.2s ease;
+}
+.modal-scrollbar-x::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
 /* Grid-paper canvas */
 .grid-canvas {
   background-color: var(--surface-default);

@@ -175,9 +175,9 @@ export function CompetitionModal({
             <span className="shrink-0">{currentComp.date}</span>
           </div>
 
-          {/* Thumbnail Strip with .no-scrollbar */}
+          {/* Thumbnail Strip with styled custom horizontal scrollbar */}
           {competitions.length > 1 && (
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+            <div className="flex items-center gap-2 overflow-x-auto modal-scrollbar-x pt-0.5 pb-2">
               {competitions.map((comp, idx) => {
                 const thumb = comp.images && comp.images.length > 0 ? comp.images[0] : null;
 

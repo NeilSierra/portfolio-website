@@ -63,7 +63,7 @@ export default function About() {
             </div>
 
             {/* Code Body */}
-            <div className="p-5 font-plex-mono text-[12px] sm:text-[13px] leading-[1.8] overflow-x-auto">
+            <div className="p-5 font-plex-mono text-[12px] sm:text-[13px] leading-[1.8] overflow-x-auto modal-scrollbar-x">
               <div>
                 <span className="text-[var(--code-muted)]">01  </span>
                 <span className="text-[var(--code-class)]">export const</span>{" "}

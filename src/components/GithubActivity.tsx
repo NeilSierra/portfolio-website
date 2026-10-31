@@ -319,7 +319,7 @@ export function GithubActivity() {
                   <span>Daily Grid</span>
                 </div>
 
-                <div className="overflow-x-auto pb-1 no-scrollbar">
+                <div className="overflow-x-auto pb-2 custom-scrollbar-x">
                   <div className="flex gap-[3px] min-w-max">
                     {weeks.length > 0 ? (
                       weeks.map((week, wIdx) => (

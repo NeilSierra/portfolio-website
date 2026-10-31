@@ -224,9 +224,10 @@ export default function Education() {
               </div>
             </div>
 
-            {/* Category Filter Tabs */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-3 mb-8 border-b border-[var(--border-default)] no-scrollbar -mx-4 px-4 sm:-mx-0 sm:px-0">
+            {/* Category Filter Tabs (Tech Stack Category Button Design & Custom Scrollbar) */}
+            <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-3 mb-8 border-b border-[var(--border-default)] custom-scrollbar-x -mx-4 px-4 sm:-mx-0 sm:px-0 scroll-fade">
               {categories.map((cat) => {
+                const isActive = activeCategory === cat;
                 const count =
                   cat === "All"
                     ? education.certifications.length
@@ -237,13 +238,22 @@ export default function Education() {
                     key={cat}
                     type="button"
                     onClick={() => handleCategoryChange(cat)}
-                    className={`font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider px-3 py-1.5 rounded-[4px] transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
-                      activeCategory === cat
-                        ? "bg-[var(--text-primary)] text-[var(--surface-base)] font-bold shadow-xs"
-                        : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] border border-[var(--border-default)]"
+                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
+                      isActive
+                        ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-sm"
+                        : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)] border border-[var(--border-default)]"
                     }`}
                   >
-                    {cat} ({count})
+                    <span>{cat}</span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.5 rounded-[2px] ${
+                        isActive
+                          ? "bg-[var(--surface-base)] text-[var(--text-primary)]"
+                          : "bg-[var(--surface-raised)] text-[var(--text-tertiary)]"
+                      }`}
+                    >
+                      {count}
+                    </span>
                   </button>
                 );
               })}
