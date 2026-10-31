@@ -1,4 +1,5 @@
 import { portfolioData } from "@/data/portfolio";
+import { GithubActivity } from "./GithubActivity";
 
 export default function About() {
   const { about } = portfolioData;
@@ -122,6 +123,11 @@ export default function About() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Realtime GitHub Telemetry Stream & Contribution Matrix */}
+      <div className="mt-12 sm:mt-14 scroll-fade">
+        <GithubActivity />
       </div>
     </section>
   );
