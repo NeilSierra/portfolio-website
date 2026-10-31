@@ -27,11 +27,11 @@ export default function Contact() {
             </div>
 
             {/* Directory Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-12 scroll-fade">
               {/* Email Card */}
               <a
                 href={`mailto:${contact.email}`}
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all scroll-scale"
+                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
               >
                 <div>
                   <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
@@ -55,7 +55,7 @@ export default function Contact() {
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all scroll-scale"
+                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
               >
                 <div>
                   <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
@@ -79,7 +79,7 @@ export default function Contact() {
                 href={contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all scroll-scale"
+                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
               >
                 <div>
                   <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
@@ -103,7 +103,7 @@ export default function Contact() {
                 href={contact.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all scroll-scale"
+                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
               >
                 <div>
                   <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
@@ -127,7 +127,7 @@ export default function Contact() {
                 href={contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all scroll-scale"
+                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
               >
                 <div>
                   <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">

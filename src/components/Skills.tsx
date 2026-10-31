@@ -121,11 +121,11 @@ export default function Skills() {
             </div>
 
             {/* Multi-Page Grid (No levels, only clean iconic cards) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 scroll-fade">
               {paginatedSkills.map((skill) => (
                 <div
                   key={`${skill.category}-${skill.name}`}
-                  className="card-ring p-3.5 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 transition-all hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1 group border border-[var(--border-default)] scroll-scale"
+                  className="card-ring p-3.5 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 transition-all hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1 group border border-[var(--border-default)]"
                 >
                   {/* Icon Container */}
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] bg-[var(--surface-default)] text-[var(--text-primary)] flex items-center justify-center transition-colors group-hover:bg-[var(--text-primary)] group-hover:text-[var(--surface-base)]">

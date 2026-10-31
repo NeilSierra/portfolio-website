@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full h-16 sm:h-[72px] bg-[var(--surface-default)]/95 backdrop-blur-sm border-b border-[var(--border-strong)] transition-colors">
+      <header className="sticky top-0 z-40 w-full h-16 sm:h-[72px] bg-[var(--surface-default)] border-b border-[var(--border-strong)] transition-colors">
         <div className="max-w-[1280px] h-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
           {/* Brand Block */}
           <a

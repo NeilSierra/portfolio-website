@@ -48,7 +48,7 @@ export default function Experience() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 scroll-fade">
             {experience.hackathons.map((comp) => {
               const hasImages = Boolean(comp.images && comp.images.length > 0);
               const isWinner = comp.result.toLowerCase().includes("winner");
@@ -56,7 +56,7 @@ export default function Experience() {
               return (
                 <div
                   key={comp.id}
-                  className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group scroll-scale"
+                  className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group"
                 >
                   <div>
                     {/* Visual Media Frame if images exist */}
@@ -83,10 +83,10 @@ export default function Experience() {
                         {/* Result Overlay Badge */}
                         <div className="absolute top-2.5 left-2.5">
                           <span
-                            className={`inline-flex items-center gap-1.5 font-plex-mono text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-[4px] uppercase tracking-wider backdrop-blur-md shadow-sm ${
+                            className={`inline-flex items-center gap-1.5 font-plex-mono text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-[4px] uppercase tracking-wider shadow-sm ${
                               isWinner
                                 ? "bg-[var(--accent)] text-white"
-                                : "bg-black/75 text-white border border-white/20"
+                                : "bg-black/85 text-white border border-white/20"
                             }`}
                           >
                             <AppIcon name="award" className="w-3.5 h-3.5 shrink-0" />
@@ -96,7 +96,7 @@ export default function Experience() {
 
                         {/* Photo Count Indicator (if multiple) */}
                         {comp.images!.length > 1 && (
-                          <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/75 text-white backdrop-blur-md border border-white/20">
+                          <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/85 text-white border border-white/20">
                             {comp.images!.length} Photos
                           </div>
                         )}

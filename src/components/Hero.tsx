@@ -94,7 +94,7 @@ export default function Hero() {
                   {hero.stats.map((stat, idx) => (
                     <div
                       key={stat.label}
-                      className={`pointer-events-auto flex-1 min-w-0 max-w-[150px] xs:max-w-[175px] sm:max-w-[220px] md:max-w-[260px] stat-card flex items-center gap-2 sm:gap-3 p-2 xs:p-2.5 sm:p-3.5 bg-[var(--surface-base)]/95 backdrop-blur-md shadow-md border border-[var(--border-default)] transition-transform hover:-translate-y-0.5 ${idx === 1 ? "ml-auto" : ""
+                      className={`pointer-events-auto flex-1 min-w-0 max-w-[150px] xs:max-w-[175px] sm:max-w-[220px] md:max-w-[260px] stat-card flex items-center gap-2 sm:gap-3 p-2 xs:p-2.5 sm:p-3.5 bg-[var(--surface-base)] shadow-md border border-[var(--border-default)] transition-transform hover:-translate-y-0.5 ${idx === 1 ? "ml-auto" : ""
                         }`}
                     >
                       <AppIcon

@@ -4,18 +4,10 @@ import { useEffect } from "react";
 
 export function ScrollObserver() {
   useEffect(() => {
-    // If browser natively supports CSS Scroll-driven Animations, let the compositor handle it
-    if (
-      typeof CSS !== "undefined" &&
-      CSS.supports &&
-      CSS.supports("animation-timeline", "view()")
-    ) {
-      return;
-    }
-
-    const elements = document.querySelectorAll(".scroll-fade, .scroll-scale");
+    const elements = document.querySelectorAll<HTMLElement>(".scroll-fade, .scroll-scale");
     if (!elements.length) return;
 
+    // Positive bottom rootMargin so elements animate in smoothly before reaching the viewport edge
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,16 +18,23 @@ export function ScrollObserver() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: "0px 0px -40px 0px",
+        threshold: 0.05,
+        rootMargin: "0px 0px 80px 0px",
       }
     );
 
-    elements.forEach((el) => observer.observe(el));
+    elements.forEach((el) => {
+      // Reveal items already in or near viewport immediately
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 80) {
+        el.classList.add("is-visible");
+      } else {
+        observer.observe(el);
+      }
+    });
 
     return () => observer.disconnect();
   }, []);
 
   return null;
 }
-

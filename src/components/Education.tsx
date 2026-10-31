@@ -90,11 +90,11 @@ export default function Education() {
               </span>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-3.5 scroll-fade">
               {education.achievements.map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-3.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all flex items-start gap-3.5 scroll-scale"
+                  className="p-3.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all flex items-start gap-3.5"
                 >
                   {/* School Crest Logo */}
                   {item.logo ? (
