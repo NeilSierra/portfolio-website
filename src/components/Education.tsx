@@ -65,13 +65,15 @@ export default function Education() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mb-12 scroll-fade">
-          <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
-            ACADEMICS &amp; HONORS
-          </span>
+          <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+            <span>EDUCATION</span>
+            <span className="text-[var(--text-tertiary)]">{"//"}</span>
+            <span className="text-[var(--text-tertiary)]">ACADEMICS &amp; HONORS</span>
+          </div>
           <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
             Education &amp; Achievements
           </h2>
-          <p className="text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
+          <p className="text-[15px] sm:text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
             My academic foundation, formal program coursework, and scholastic milestones.
           </p>
         </div>

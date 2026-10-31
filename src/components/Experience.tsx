@@ -23,13 +23,15 @@ export default function Experience() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 scroll-fade">
-          <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
-            EXPERIENCE &amp; COMPETITIONS
-          </span>
+          <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+            <span>EXPERIENCE &amp; COMPETITIONS</span>
+            <span className="text-[var(--text-tertiary)]">{"//"}</span>
+            <span className="text-[var(--text-tertiary)]">HACKATHONS &amp; TRACK RECORD</span>
+          </div>
           <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
             Work &amp; Competitions
           </h2>
-          <p className="text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
+          <p className="text-[15px] sm:text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
             A track record of competitive programming, hackathons, and real-world technology challenges.
           </p>
         </div>
@@ -215,7 +217,7 @@ export default function Experience() {
 
             <a
               href="#contact"
-              className="h-10 px-5 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[13px] inline-flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shrink-0"
+              className="h-10 px-5 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] inline-flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm shrink-0"
             >
               <AppIcon name="mail" className="w-4 h-4" />
               <span>Get in Touch</span>

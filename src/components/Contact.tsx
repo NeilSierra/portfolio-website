@@ -15,13 +15,15 @@ export default function Contact() {
           {/* Centered 1280px Column */}
           <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
             <div className="max-w-3xl scroll-fade">
-              <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
-                CONTACT
-              </span>
+              <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+                <span>CONTACT</span>
+                <span className="text-[var(--text-tertiary)]">{"//"}</span>
+                <span className="text-[var(--text-tertiary)]">COMMUNICATIONS &amp; DIRECTORY</span>
+              </div>
               <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
                 {contact.heading}
               </h2>
-              <p className="text-[16px] text-[var(--text-secondary)] mt-3 leading-relaxed">
+              <p className="text-[15px] sm:text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl leading-relaxed">
                 {contact.intro}
               </p>
             </div>
@@ -151,7 +153,7 @@ export default function Contact() {
             <div className="mt-12 flex flex-wrap items-center gap-4 scroll-fade">
               <a
                 href={`mailto:${contact.email}`}
-                className="h-11 px-6 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                className="h-11 px-6 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
               >
                 <AppIcon name="mail" className="w-4 h-4" />
                 <span>Email Neil Sierra</span>
@@ -160,7 +162,7 @@ export default function Contact() {
               <a
                 href={contact.cvPdfUrl}
                 download
-                className="h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                className="h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
               >
                 <AppIcon name="file-text" className="w-4 h-4" />
                 <span>Download CV (PDF)</span>

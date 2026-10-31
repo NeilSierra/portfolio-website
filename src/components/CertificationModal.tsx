@@ -109,7 +109,7 @@ export function CertificationModal({
               aria-label="Close certificate viewer"
               className="w-8 h-8 rounded-[4px] border border-[#333333] bg-[#222222] hover:bg-[#333333] hover:border-[var(--accent)] text-[#D1D1D1] hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             >
-              <AppIcon name="close" className="w-4 h-4" />
+              <AppIcon name="close" className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>

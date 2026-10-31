@@ -5,16 +5,22 @@ export default function About() {
   const { about } = portfolioData;
 
   return (
-    <section id="about" className="py-20 sm:py-24 max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Section Eyebrow & Title */}
-      <div className="mb-12 scroll-fade">
-        <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
-          ABOUT
-        </span>
-        <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
-          {about.heading}
-        </h2>
-      </div>
+    <section id="about" className="py-20 sm:py-24">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Eyebrow & Title */}
+        <div className="mb-12 scroll-fade">
+          <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+            <span>ABOUT</span>
+            <span className="text-[var(--text-tertiary)]">{"//"}</span>
+            <span className="text-[var(--text-tertiary)]">BACKGROUND &amp; DOSSIER</span>
+          </div>
+          <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
+            {about.heading}
+          </h2>
+          <p className="text-[15px] sm:text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
+            Background narrative, engineering mindset, and live developer telemetry.
+          </p>
+        </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
         {/* Left Column: Bio Narrative & Quick Facts */}
@@ -128,6 +134,7 @@ export default function About() {
       {/* Realtime GitHub Telemetry Stream & Contribution Matrix */}
       <div className="mt-12 sm:mt-14 scroll-fade">
         <GithubActivity />
+      </div>
       </div>
     </section>
   );

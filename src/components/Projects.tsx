@@ -87,7 +87,7 @@ export default function Projects() {
 
               <a
                 href="#contact"
-                className="w-full sm:w-auto h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                className="w-full sm:w-auto h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
               >
                 <AppIcon name="mail" className="w-4 h-4" />
                 <span>Get in Touch</span>

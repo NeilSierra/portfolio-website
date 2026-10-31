@@ -71,15 +71,20 @@ export default function Skills() {
             {/* Header */}
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 scroll-fade">
               <div>
-                <span className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold block mb-2">
-                  SKILLS &amp; TECHNOLOGIES
-                </span>
+                <div className="flex items-center gap-2 mb-2 font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold">
+                  <span>SKILLS &amp; TECHNOLOGIES</span>
+                  <span className="text-[var(--text-tertiary)]">{"//"}</span>
+                  <span className="text-[var(--text-tertiary)]">STACK MATRIX</span>
+                </div>
                 <h2 className="font-serif-display text-[32px] sm:text-[40px] font-bold text-[var(--text-primary)] tracking-[-0.03em] leading-tight">
                   Tech Stack
                 </h2>
+                <p className="text-[15px] sm:text-[16px] text-[var(--text-secondary)] mt-2 max-w-2xl">
+                  A comprehensive directory of programming languages, frameworks, databases, and developer tooling.
+                </p>
               </div>
 
-              <div className="flex items-center gap-2 text-[var(--text-tertiary)] font-plex-mono text-[12px]">
+              <div className="flex items-center gap-2 text-[var(--text-tertiary)] font-plex-mono text-[12px] pb-1">
                 <AppIcon name="layers" className="w-4 h-4 text-[var(--accent)]" />
                 <span>{displayedSkills.length} TECHNOLOGIES LOADED</span>
               </div>
