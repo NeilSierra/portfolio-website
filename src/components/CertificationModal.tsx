@@ -76,29 +76,29 @@ export function CertificationModal({
       role="dialog"
       aria-modal="true"
       aria-label={`Certificate viewer: ${currentCert.title}`}
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/60 dark:bg-black/85 backdrop-blur-xs animate-fade-in"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-[8px] bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-strong)] shadow-2xl overflow-hidden transition-colors"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
-        <div className="h-12 px-4 sm:px-6 bg-[#161616] border-b border-[#2E2E2E] flex items-center justify-between gap-3 shrink-0">
+        <div className="h-12 px-4 sm:px-6 bg-[var(--surface-default)] border-b border-[var(--border-default)] flex items-center justify-between gap-3 shrink-0">
           <div className="flex items-center gap-2.5 min-w-0 pr-2">
             <AppIcon name="certificate" className="w-4 h-4 text-[var(--accent)] shrink-0" />
-            <span className="font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider text-[#A8CDE4] truncate">
+            <span className="font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-wider text-[var(--accent)] font-semibold truncate">
               {currentCert.issuer}
             </span>
-            <span className="text-[#666666]">{"//"}</span>
-            <span className="font-plex-mono text-[11px] text-[#9A9A9A] shrink-0">
+            <span className="text-[var(--text-tertiary)]">{"//"}</span>
+            <span className="font-plex-mono text-[11px] text-[var(--text-secondary)] shrink-0">
               {currentCert.year}
             </span>
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
             {/* Counter Badge */}
-            <span className="font-plex-mono text-[11px] px-2.5 py-0.5 rounded-[12px] bg-[#222222] text-[#D1D1D1] border border-[#333333]">
+            <span className="font-plex-mono text-[11px] px-2.5 py-0.5 rounded-[12px] bg-[var(--surface-base)] text-[var(--text-secondary)] border border-[var(--border-default)]">
               {currentIndex + 1} / {certifications.length}
             </span>
 
@@ -107,7 +107,7 @@ export function CertificationModal({
               type="button"
               onClick={onClose}
               aria-label="Close certificate viewer"
-              className="w-8 h-8 rounded-[4px] border border-[#333333] bg-[#222222] hover:bg-[#333333] hover:border-[var(--accent)] text-[#D1D1D1] hover:text-white flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              className="w-8 h-8 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] hover:bg-[var(--surface-raised)] hover:border-[var(--accent)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] flex items-center justify-center transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             >
               <AppIcon name="close" className="w-3.5 h-3.5" />
             </button>
@@ -115,7 +115,7 @@ export function CertificationModal({
         </div>
 
         {/* Center: Image Display Frame - Strictly bounded to prevent vertical overflow */}
-        <div className="relative flex-1 min-h-0 w-full bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
+        <div className="relative flex-1 min-h-0 w-full bg-[var(--surface-raised)]/40 dark:bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden transition-colors">
           {currentCert.imageUrl ? (
             <div className="relative w-full h-[40vh] sm:h-[48vh] md:h-[54vh] max-h-[500px]">
               <Image
@@ -128,7 +128,7 @@ export function CertificationModal({
               />
             </div>
           ) : (
-            <div className="h-[40vh] flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
+            <div className="h-[40vh] flex flex-col items-center justify-center text-[var(--text-tertiary)] font-plex-mono text-[13px]">
               <AppIcon name="certificate" className="w-8 h-8 mb-2 opacity-50" />
               <span>No image preview available</span>
             </div>
@@ -141,7 +141,7 @@ export function CertificationModal({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous certificate"
-                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
+                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--accent)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
               >
                 <svg className="w-5 h-5 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -152,7 +152,7 @@ export function CertificationModal({
                 type="button"
                 onClick={handleNext}
                 aria-label="Next certificate"
-                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-black/75 hover:bg-black text-white border border-white/20 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg"
+                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--accent)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
               >
                 <svg className="w-5 h-5 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -163,14 +163,14 @@ export function CertificationModal({
         </div>
 
         {/* Bottom Bar: Title & Thumbnail Strip */}
-        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-2.5 shrink-0">
+        <div className="p-3 sm:p-4 bg-[var(--surface-default)] border-t border-[var(--border-default)] flex flex-col gap-2.5 shrink-0 transition-colors">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-left">
             <div className="min-w-0">
-              <h4 className="text-[14px] sm:text-[15px] font-bold text-[#F9F9F9] leading-snug truncate">
+              <h4 className="text-[14px] sm:text-[15px] font-bold text-[var(--text-primary)] leading-snug truncate">
                 {currentCert.title}
               </h4>
-              <p className="font-plex-mono text-[11px] text-[#9A9A9A] mt-0.5">
-                Verified Issuer: <span className="text-[#A8CDE4]">{currentCert.issuer}</span>
+              <p className="font-plex-mono text-[11px] text-[var(--text-tertiary)] mt-0.5">
+                Verified Issuer: <span className="text-[var(--accent)] font-semibold">{currentCert.issuer}</span>
               </p>
             </div>
 
@@ -189,10 +189,10 @@ export function CertificationModal({
                   key={cert.id}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
-                  className={`relative w-14 h-9 sm:w-16 sm:h-10 rounded-[3px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
+                  className={`relative w-14 h-9 sm:w-16 sm:h-10 rounded-[3px] overflow-hidden border-2 transition-all shrink-0 bg-[var(--surface-base)] ${
                     currentIndex === idx
-                      ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105"
-                      : "border-[#333333] opacity-60 hover:opacity-100"
+                      ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105 shadow-sm"
+                      : "border-[var(--border-default)] opacity-70 hover:opacity-100"
                   }`}
                   title={cert.title}
                 >
@@ -205,7 +205,7 @@ export function CertificationModal({
                       sizes="64px"
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center font-plex-mono text-[9px] text-[#666666]">
+                    <div className="w-full h-full flex items-center justify-center font-plex-mono text-[9px] text-[var(--text-tertiary)]">
                       N/A
                     </div>
                   )}

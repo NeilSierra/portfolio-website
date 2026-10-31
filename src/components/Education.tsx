@@ -209,11 +209,10 @@ export default function Education() {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
               <div>
-                <div className="flex items-center gap-2 font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mb-1">
-                  <AppIcon name="certificate" className="w-4 h-4 text-[var(--accent)] shrink-0" />
+                <div className="flex items-center gap-2 font-plex-mono text-[11px] sm:text-[12px] uppercase tracking-[0.1em] text-[var(--accent)] font-semibold mb-2">
                   <span>CREDENTIALS</span>
                   <span className="text-[var(--text-tertiary)]">{"//"}</span>
-                  <span className="text-[var(--text-secondary)]">LICENSES &amp; CERTIFICATIONS</span>
+                  <span className="text-[var(--text-tertiary)]">LICENSES &amp; CERTIFICATIONS</span>
                 </div>
                 <h3 className="font-serif-display text-[26px] sm:text-[32px] font-bold text-[var(--text-primary)] tracking-tight">
                   Verified Certifications

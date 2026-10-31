@@ -250,20 +250,20 @@ body {
   background: var(--accent);
 }
 
-/* Styled Custom Horizontal Scrollbar (Dark Modal) */
+/* Styled Custom Horizontal Scrollbar (Modal & Dynamic Surface) */
 .modal-scrollbar-x {
   scrollbar-width: thin;
-  scrollbar-color: #3e3e3e rgba(255, 255, 255, 0.05);
+  scrollbar-color: var(--border-strong) var(--fill-subtle);
 }
 .modal-scrollbar-x::-webkit-scrollbar {
   height: 4px;
 }
 .modal-scrollbar-x::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--fill-subtle);
   border-radius: 9999px;
 }
 .modal-scrollbar-x::-webkit-scrollbar-thumb {
-  background: #3e3e3e;
+  background: var(--border-strong);
   border-radius: 9999px;
   transition: background-color 0.2s ease;
 }
