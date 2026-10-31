@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AppIcon } from "./AppIcon";
 import { HackathonItem } from "@/data/portfolio";
+
+const emptySubscribe = () => () => {};
 
 interface CompetitionModalProps {
   isOpen: boolean;
@@ -18,6 +21,12 @@ export function CompetitionModal({
   competitions,
   initialIndex = 0,
 }: CompetitionModalProps) {
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -58,14 +67,14 @@ export function CompetitionModal({
     };
   }, [isOpen, onClose, handlePrev, handleNext]);
 
-  if (!isOpen || competitions.length === 0) return null;
+  if (!isOpen || !isClient || competitions.length === 0) return null;
 
   const currentComp = competitions[currentIndex];
   const hasImage = Boolean(currentComp.images && currentComp.images.length > 0);
   const currentImage = hasImage ? currentComp.images![0] : null;
   const isWinner = currentComp.result.toLowerCase().includes("winner");
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-6 bg-black/85 animate-fade-in"
       role="dialog"
@@ -75,11 +84,11 @@ export function CompetitionModal({
     >
       {/* Modal Container */}
       <div
-        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-[#2E2E2E] bg-[#161616] shrink-0">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-[#2E2E2E] bg-[#161616] shrink-0">
           <div className="flex items-center gap-2.5 min-w-0 pr-2">
             <span
               className={`font-plex-mono text-[10px] sm:text-[11px] px-2.5 py-0.5 rounded-[3px] font-semibold uppercase tracking-wider shrink-0 ${
@@ -109,10 +118,10 @@ export function CompetitionModal({
           </div>
         </div>
 
-        {/* Center: Image Frame */}
-        <div className="relative w-full h-[45vh] sm:h-[55vh] md:h-[62vh] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
+        {/* Center: Image Frame - Strictly bounded to avoid vertical scrollbar */}
+        <div className="relative flex-1 min-h-0 w-full bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
           {currentImage ? (
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-[40vh] sm:h-[48vh] md:h-[54vh] max-h-[500px]">
               <Image
                 src={currentImage}
                 alt={`${currentComp.event} - Banner`}
@@ -123,7 +132,7 @@ export function CompetitionModal({
               />
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
+            <div className="h-[40vh] flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
               <AppIcon name="award" className="w-8 h-8 mb-2 opacity-50" />
               <span>No image preview available</span>
             </div>
@@ -157,8 +166,8 @@ export function CompetitionModal({
           )}
         </div>
 
-        {/* Footer Bar: Event Info & Thumbnail Strip */}
-        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-3">
+        {/* Footer Bar: Event Info & Clean Horizontal Thumbnails without scrollbars */}
+        <div className="px-4 py-3 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-2.5 shrink-0">
           <div className="flex items-center justify-between text-[11px] sm:text-[12px] font-plex-mono text-[#9A9A9A]">
             <span className="text-[#A8CDE4] font-semibold truncate pr-2">
               {currentComp.event}
@@ -166,9 +175,9 @@ export function CompetitionModal({
             <span className="shrink-0">{currentComp.date}</span>
           </div>
 
-          {/* Thumbnail Strip */}
+          {/* Thumbnail Strip with .no-scrollbar */}
           {competitions.length > 1 && (
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
               {competitions.map((comp, idx) => {
                 const thumb = comp.images && comp.images.length > 0 ? comp.images[0] : null;
 
@@ -177,7 +186,7 @@ export function CompetitionModal({
                     key={comp.id}
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
-                    className={`relative w-14 h-10 sm:w-16 sm:h-11 rounded-[4px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
+                    className={`relative w-14 h-9 sm:w-16 sm:h-10 rounded-[3px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
                       currentIndex === idx
                         ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105"
                         : "border-[#333333] opacity-60 hover:opacity-100"
@@ -204,6 +213,7 @@ export function CompetitionModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

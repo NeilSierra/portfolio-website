@@ -220,6 +220,15 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Grid-paper canvas */
 .grid-canvas {
   background-color: var(--surface-default);

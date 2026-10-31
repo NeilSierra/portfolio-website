@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AppIcon } from "./AppIcon";
 import { CertificationItem } from "@/data/portfolio";
+
+const emptySubscribe = () => () => {};
 
 interface CertificationModalProps {
   isOpen: boolean;
@@ -18,6 +21,12 @@ export function CertificationModal({
   certifications,
   initialIndex = 0,
 }: CertificationModalProps) {
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const [prevInitialIndex, setPrevInitialIndex] = useState(initialIndex);
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -58,11 +67,11 @@ export function CertificationModal({
     };
   }, [isOpen, onClose, handlePrev, handleNext]);
 
-  if (!isOpen || certifications.length === 0) return null;
+  if (!isOpen || !isClient || certifications.length === 0) return null;
 
   const currentCert = certifications[currentIndex];
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -71,7 +80,7 @@ export function CertificationModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
+        className="relative w-full max-w-4xl max-h-[90vh] flex flex-col rounded-[8px] bg-[#111111] text-white border border-[#2E2E2E] shadow-2xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top Header Bar */}
@@ -105,10 +114,10 @@ export function CertificationModal({
           </div>
         </div>
 
-        {/* Center: Image Display Frame */}
-        <div className="relative w-full h-[45vh] sm:h-[55vh] md:h-[62vh] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
+        {/* Center: Image Display Frame - Strictly bounded to prevent vertical overflow */}
+        <div className="relative flex-1 min-h-0 w-full bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-4 select-none overflow-hidden">
           {currentCert.imageUrl ? (
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-[40vh] sm:h-[48vh] md:h-[54vh] max-h-[500px]">
               <Image
                 src={currentCert.imageUrl}
                 alt={currentCert.title}
@@ -119,7 +128,7 @@ export function CertificationModal({
               />
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
+            <div className="h-[40vh] flex flex-col items-center justify-center text-[#666666] font-plex-mono text-[13px]">
               <AppIcon name="certificate" className="w-8 h-8 mb-2 opacity-50" />
               <span>No image preview available</span>
             </div>
@@ -154,7 +163,7 @@ export function CertificationModal({
         </div>
 
         {/* Bottom Bar: Title & Thumbnail Strip */}
-        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-3">
+        <div className="p-3 sm:p-4 bg-[#141414] border-t border-[#2E2E2E] flex flex-col gap-2.5 shrink-0">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 text-left">
             <div className="min-w-0">
               <h4 className="text-[14px] sm:text-[15px] font-bold text-[#F9F9F9] leading-snug truncate">
@@ -172,15 +181,15 @@ export function CertificationModal({
             )}
           </div>
 
-          {/* Thumbnail Strip */}
+          {/* Thumbnail Strip with .no-scrollbar */}
           {certifications.length > 1 && (
-            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
               {certifications.map((cert, idx) => (
                 <button
                   key={cert.id}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
-                  className={`relative w-14 h-10 sm:w-16 sm:h-11 rounded-[4px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
+                  className={`relative w-14 h-9 sm:w-16 sm:h-10 rounded-[3px] overflow-hidden border-2 transition-all shrink-0 bg-[#0A0A0A] ${
                     currentIndex === idx
                       ? "border-[var(--accent)] ring-2 ring-[var(--accent)]/40 scale-105"
                       : "border-[#333333] opacity-60 hover:opacity-100"
@@ -206,6 +215,7 @@ export function CertificationModal({
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
