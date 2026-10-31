@@ -147,7 +147,7 @@ export default function Skills() {
 
             {/* Pagination Toolbar (Rendered only when items exceed 4 rows) */}
             {exceedsFourRows && totalPages > 1 && (
-              <div className="mt-8 pt-6 border-t border-[var(--border-default)] flex flex-col sm:flex-row items-center justify-between gap-4 font-plex-mono text-[12px] scroll-fade">
+              <div className="mt-8 pt-6 border-t border-[var(--border-default)] flex flex-col sm:flex-row items-center justify-between gap-4 font-plex-mono text-[12px]">
                 {/* Status Indicator */}
                 <span className="text-[var(--text-tertiary)] uppercase tracking-wider text-[11px] sm:text-[12px]">
                   SHOWING {(currentPage - 1) * itemsPerPage + 1}–

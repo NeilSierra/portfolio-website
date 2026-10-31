@@ -4,8 +4,15 @@ import { useEffect } from "react";
 
 export function ScrollObserver() {
   useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>(".scroll-fade, .scroll-scale");
-    if (!elements.length) return;
+    const handleElement = (el: HTMLElement) => {
+      if (el.classList.contains("is-visible")) return;
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 80) {
+        el.classList.add("is-visible");
+      } else {
+        observer.observe(el);
+      }
+    };
 
     // Positive bottom rootMargin so elements animate in smoothly before reaching the viewport edge
     const observer = new IntersectionObserver(
@@ -23,17 +30,26 @@ export function ScrollObserver() {
       }
     );
 
-    elements.forEach((el) => {
-      // Reveal items already in or near viewport immediately
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 80) {
-        el.classList.add("is-visible");
-      } else {
-        observer.observe(el);
-      }
+    const elements = document.querySelectorAll<HTMLElement>(".scroll-fade, .scroll-scale");
+    elements.forEach(handleElement);
+
+    // Dynamic observer for components that mount or unmount conditionally
+    const mutationObserver = new MutationObserver(() => {
+      const dynamicElements = document.querySelectorAll<HTMLElement>(
+        ".scroll-fade:not(.is-visible), .scroll-scale:not(.is-visible)"
+      );
+      dynamicElements.forEach(handleElement);
     });
 
-    return () => observer.disconnect();
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   return null;
