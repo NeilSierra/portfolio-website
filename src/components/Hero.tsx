@@ -16,9 +16,9 @@ export default function Hero() {
           {/* Centered 1280px Content Column */}
           <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-14 pb-0 flex flex-col justify-start relative">
             {/* Mobile Layout (< 768px: phone & small screens) */}
-            <div className="md:hidden flex flex-col items-start text-left w-full">
+            <div className="md:hidden flex flex-col items-center text-center w-full">
               {/* Availability Badge & Location */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
                   <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
                   <span className="font-plex-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
@@ -32,12 +32,12 @@ export default function Hero() {
               </div>
 
               {/* Display headline */}
-              <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.4rem,8.5vw,3.8rem)] leading-none tracking-[-0.02em] select-none mb-3 sm:mb-4">
+              <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.4rem,8.5vw,3.8rem)] leading-none tracking-[-0.02em] select-none text-center mb-3 sm:mb-4">
                 {hero.name}
               </h1>
 
               {/* Role Statement */}
-              <div className="mb-4 sm:mb-5">
+              <div className="mb-4 sm:mb-5 text-center">
                 <p className="text-[19px] sm:text-[23px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
                   {hero.roleLine1}
                 </p>
@@ -47,14 +47,14 @@ export default function Hero() {
               </div>
 
               {/* Multiline Quote */}
-              <div className="relative max-w-md sm:max-w-lg mb-5 sm:mb-6 pl-3 sm:pl-3.5 border-l-2 border-[var(--accent)]">
+              <div className="relative max-w-md sm:max-w-lg mb-5 sm:mb-6 px-4 text-center">
                 <p className="font-sans italic text-[14px] sm:text-[15.5px] leading-[1.45] text-[var(--text-secondary)]">
                   “{hero.valueStatement}”
                 </p>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[280px] sm:max-w-md mb-6 sm:mb-8">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-[280px] sm:max-w-md mb-6 sm:mb-8 mx-auto">
                 <a
                   href="#projects"
                   className="w-full sm:flex-1 h-10 sm:h-11 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
@@ -85,9 +85,9 @@ export default function Hero() {
             {/* Tablet Layout (md: 768px - 1023px) — Content starts from top, profile at bottom */}
             <div className="hidden md:flex lg:hidden relative w-full min-h-[460px] md:min-h-[500px] items-start justify-between pb-6 pt-0 overflow-hidden">
               {/* Left Content Column starts at the top */}
-              <div className="relative z-10 max-w-[420px] md:max-w-[460px] flex flex-col items-start text-left pt-0">
+              <div className="relative z-10 max-w-[420px] md:max-w-[460px] flex flex-col items-start text-left pt-0 gap-4 md:gap-5">
                 {/* Availability Badge & Location */}
-                <div className="flex flex-wrap items-center gap-2.5 mb-3">
+                <div className="flex flex-wrap items-center gap-2.5">
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
                     <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
                     <span className="font-plex-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
@@ -101,12 +101,12 @@ export default function Hero() {
                 </div>
 
                 {/* Name Display */}
-                <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[2.8rem] md:text-[3.2rem] leading-none tracking-[-0.02em] select-none mb-3">
+                <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[2.8rem] md:text-[3.2rem] leading-none tracking-[-0.02em] select-none">
                   {hero.name}
                 </h1>
 
                 {/* Role Statement */}
-                <div className="mb-4">
+                <div>
                   <p className="text-[22px] md:text-[24px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
                     {hero.roleLine1}
                   </p>
@@ -116,7 +116,7 @@ export default function Hero() {
                 </div>
 
                 {/* Quote */}
-                <div className="relative max-w-[300px] mb-5 pl-3 border-l-2 border-[var(--accent)]">
+                <div className="relative max-w-[300px] pl-3 border-l-2 border-[var(--accent)]">
                   <p className="font-sans italic text-[15px] leading-[1.45] text-[var(--text-secondary)]">
                     “{hero.valueStatement}”
                   </p>
