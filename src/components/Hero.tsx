@@ -16,71 +16,68 @@ export default function Hero() {
           {/* Centered 1280px Content Column */}
           <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-14 pb-0 flex flex-col justify-start relative">
             {/* Mobile Layout (< 768px: phone & small screens) */}
-            <div className="md:hidden relative w-full min-h-[440px] xs:min-h-[480px] flex flex-col justify-start pb-4 overflow-hidden">
-              {/* Content in front, starting from the top */}
-              <div className="relative z-10 flex flex-col items-start text-left w-full max-w-[320px] xs:max-w-[360px] pt-0">
-                {/* Availability Badge & Location */}
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
-                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
-                    <span className="font-plex-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
-                      {hero.availability}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[var(--text-tertiary)] text-[12px]">
-                    <AppIcon name="map-pin" className="w-3.5 h-3.5" />
-                    <span>{hero.location}</span>
-                  </div>
+            <div className="md:hidden flex flex-col items-start text-left w-full">
+              {/* Availability Badge & Location */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
+                  <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
+                  <span className="font-plex-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
+                    {hero.availability}
+                  </span>
                 </div>
-
-                {/* Display headline */}
-                <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.3rem,9vw,3.4rem)] leading-none tracking-[-0.02em] select-none mb-3">
-                  {hero.name}
-                </h1>
-
-                {/* Role Statement */}
-                <div className="mb-3.5">
-                  <p className="text-[18px] sm:text-[21px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
-                    {hero.roleLine1}
-                  </p>
-                  <p className="text-[14px] sm:text-[16px] text-[var(--text-secondary)] leading-tight mt-1">
-                    {hero.roleLine2}
-                  </p>
-                </div>
-
-                {/* Multiline Quote */}
-                <div className="relative max-w-[320px] mb-4 pl-3 border-l-2 border-[var(--accent)]">
-                  <p className="font-sans italic text-[13.5px] sm:text-[14.5px] leading-[1.4] text-[var(--text-secondary)]">
-                    “{hero.valueStatement}”
-                  </p>
-                </div>
-
-                {/* CTA Buttons */}
-                <div className="w-full max-w-[300px] flex xs:flex-row flex-col gap-2.5">
-                  <a
-                    href="#projects"
-                    className="flex-1 h-9 sm:h-10 px-3.5 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[13px] flex items-center justify-center gap-1.5 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
-                  >
-                    <AppIcon name="folder-git-2" className="w-3.5 h-3.5" />
-                    <span>View Projects</span>
-                  </a>
-
-                  <a
-                    href={hero.cvPdfUrl}
-                    download
-                    className="flex-1 h-9 sm:h-10 px-3.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[13px] flex items-center justify-center gap-1.5 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
-                  >
-                    <AppIcon name="file-text" className="w-3.5 h-3.5" />
-                    <span>Download CV</span>
-                  </a>
+                <div className="flex items-center gap-1.5 text-[var(--text-tertiary)] text-[12px] sm:text-[13px]">
+                  <AppIcon name="map-pin" className="w-3.5 h-3.5" />
+                  <span>{hero.location}</span>
                 </div>
               </div>
 
-              {/* Profile in absolute and behind, sticking to the bottom of the home */}
-              <div className="absolute bottom-0 right-[-20px] xs:right-0 z-0 pointer-events-auto flex items-end opacity-80 sm:opacity-90">
+              {/* Display headline */}
+              <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.4rem,8.5vw,3.8rem)] leading-none tracking-[-0.02em] select-none mb-3 sm:mb-4">
+                {hero.name}
+              </h1>
+
+              {/* Role Statement */}
+              <div className="mb-4 sm:mb-5">
+                <p className="text-[19px] sm:text-[23px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
+                  {hero.roleLine1}
+                </p>
+                <p className="text-[15px] sm:text-[18px] text-[var(--text-secondary)] leading-tight mt-1">
+                  {hero.roleLine2}
+                </p>
+              </div>
+
+              {/* Multiline Quote */}
+              <div className="relative max-w-md sm:max-w-lg mb-5 sm:mb-6 pl-3 sm:pl-3.5 border-l-2 border-[var(--accent)]">
+                <p className="font-sans italic text-[14px] sm:text-[15.5px] leading-[1.45] text-[var(--text-secondary)]">
+                  “{hero.valueStatement}”
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 w-full max-w-[280px] sm:max-w-md mb-6 sm:mb-8">
+                <a
+                  href="#projects"
+                  className="w-full sm:flex-1 h-10 sm:h-11 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                >
+                  <AppIcon name="folder-git-2" className="w-4 h-4" />
+                  <span>View Projects</span>
+                </a>
+
+                <a
+                  href={hero.cvPdfUrl}
+                  download
+                  className="w-full sm:flex-1 h-10 sm:h-11 px-4 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                >
+                  <AppIcon name="file-text" className="w-4 h-4" />
+                  <span>Download CV</span>
+                </a>
+              </div>
+
+              {/* Portrait Image centered in normal flow (not absolute), grounded right above Marquee */}
+              <div className="relative w-full flex justify-center items-end mt-2 sm:mt-4">
                 <InteractivePortrait
                   name={hero.name}
-                  className="w-auto h-[320px] xs:h-[360px] sm:h-[400px] aspect-square flex items-end justify-center drop-shadow-sm select-none"
+                  className="relative z-10 w-auto h-[320px] sm:h-[400px] aspect-square flex items-end justify-center drop-shadow-sm select-none"
                 />
               </div>
             </div>
@@ -205,17 +202,17 @@ export default function Hero() {
               </div>
 
               {/* Center Column: Portrait grounded at bottom, H1 at top */}
-              <div className="lg:col-span-4 flex justify-center items-end relative h-[460px] xl:h-[540px] 2xl:h-[600px]">
+              <div className="lg:col-span-4 flex justify-center items-end relative h-[420px] xl:h-[540px] 2xl:h-[600px]">
                 {/* H1 positioned absolute at top inside the container */}
-                <h1 className="absolute top-0 left-1/2 -translate-x-1/2 z-10 font-serif-display font-bold uppercase text-[var(--accent)] text-[2.6rem] lg:text-[3.2rem] xl:text-[clamp(2.4rem,6vw,5.2rem)] 2xl:text-[6rem] leading-none tracking-[-0.02em] select-none whitespace-nowrap pointer-events-none">
+                <h1 className="absolute top-0 left-1/2 -translate-x-1/2 z-1 font-serif-display font-bold uppercase text-[var(--accent)] text-[2.6rem] lg:text-[5rem] xl:text-[clamp(2.4rem,7vw,6.2rem)] 2xl:text-[6rem] leading-none tracking-[-0.02em] select-none whitespace-nowrap pointer-events-none">
                   {hero.name}
                 </h1>
 
                 {/* Profile image sitting in absolute bottom and behind */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 pointer-events-auto">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-2 pointer-events-auto">
                   <InteractivePortrait
                     name={hero.name}
-                    className="w-auto h-[440px] xl:h-[520px] 2xl:h-[580px] aspect-square flex items-end justify-center drop-shadow-md select-none"
+                    className="w-auto h-[400px] xl:h-[520px] 2xl:h-[580px] aspect-square flex items-end justify-center drop-shadow-md select-none"
                   />
                 </div>
               </div>
