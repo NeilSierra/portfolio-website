@@ -104,7 +104,7 @@ export default function Skills() {
                     key={cat}
                     type="button"
                     onClick={() => handleTabChange(cat)}
-                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
+                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
                       isActive
                         ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-sm"
                         : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)] border border-[var(--border-default)]"
@@ -126,20 +126,20 @@ export default function Skills() {
             </div>
 
             {/* Multi-Page Grid (No levels, only clean iconic cards) */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 scroll-fade">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4 scroll-stagger">
               {paginatedSkills.map((skill) => (
                 <div
                   key={`${skill.category}-${skill.name}`}
-                  className="card-ring p-3.5 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 transition-all hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1 group border border-[var(--border-default)]"
+                  className="card-ring scroll-pop p-3.5 sm:p-5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 hover:-translate-y-1.5 hover:border-[var(--border-strong)] group border border-[var(--border-default)]"
                 >
                   {/* Icon Container */}
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] bg-[var(--surface-default)] text-[var(--text-primary)] flex items-center justify-center transition-colors group-hover:bg-[var(--text-primary)] group-hover:text-[var(--surface-base)]">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-[6px] bg-[var(--surface-default)] text-[var(--text-primary)] flex items-center justify-center transition-all duration-300 ease-out group-hover:bg-[var(--text-primary)] group-hover:text-[var(--surface-base)] group-hover:scale-110">
                     <TechIcon name={skill.name} className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
 
                   {/* Title & Category info */}
                   <div className="flex flex-col items-center w-full min-w-0">
-                    <span className="font-sans font-semibold text-[13px] sm:text-[14px] text-[var(--text-primary)] tracking-tight truncate w-full">
+                    <span className="font-sans font-semibold text-[13px] sm:text-[14px] text-[var(--text-primary)] tracking-tight truncate w-full group-hover:text-[var(--accent)] transition-colors duration-300">
                       {skill.name}
                     </span>
                     <span className="font-plex-mono text-[9px] sm:text-[10px] text-[var(--text-tertiary)] uppercase mt-0.5 tracking-wider truncate w-full">
@@ -166,7 +166,7 @@ export default function Skills() {
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
-                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                     aria-label="Previous page"
                   >
                     <span>←</span>
@@ -179,7 +179,7 @@ export default function Skills() {
                       key={pg}
                       type="button"
                       onClick={() => setCurrentPage(pg)}
-                      className={`w-8 h-8 rounded-[4px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
+                      className={`w-8 h-8 rounded-[4px] font-semibold hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${
                         currentPage === pg
                           ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-xs"
                           : "border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)]"
@@ -196,7 +196,7 @@ export default function Skills() {
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                     aria-label="Next page"
                   >
                     <span className="hidden xs:inline">NEXT</span>

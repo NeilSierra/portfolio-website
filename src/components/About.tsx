@@ -33,7 +33,7 @@ export default function About() {
           </div>
 
           {/* Quick Facts Card */}
-          <div className="card-ring p-6 sm:p-7 scroll-scale">
+          <div className="card-ring p-6 sm:p-7 scroll-pop hover:-translate-y-1 transition-all duration-300">
             <h3 className="font-plex-mono text-[12px] uppercase tracking-[0.1em] text-[var(--text-tertiary)] font-semibold mb-4 pb-2 border-b border-[var(--border-default)]">
               QUICK FACTS SPECIFICATION
             </h3>
@@ -53,8 +53,8 @@ export default function About() {
         </div>
 
         {/* Right Column: Signature Dark Code Editor Window (Section 8: "Now") */}
-        <div className="lg:col-span-5 lg:sticky lg:top-28 scroll-scale">
-          <div className="rounded-[8px] bg-[var(--surface-code)] text-[var(--code-text)] shadow-[var(--shadow-code-ring)] border border-[var(--code-chrome)] overflow-hidden">
+        <div className="lg:col-span-5 lg:sticky lg:top-28 scroll-pop">
+          <div className="rounded-[8px] bg-[var(--surface-code)] text-[var(--code-text)] shadow-[var(--shadow-code-ring)] border border-[var(--code-chrome)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
             {/* Chrome Bar */}
             <div className="h-9 px-4 bg-[#111111] border-b border-[var(--code-chrome)] flex items-center justify-between">
               <div className="flex items-center gap-2">

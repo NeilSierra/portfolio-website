@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { portfolioData } from "@/data/portfolio";
 import { AppIcon } from "./AppIcon";
+import { InteractivePortrait } from "./InteractivePortrait";
 
 export default function Hero() {
   const { hero } = portfolioData;
@@ -8,117 +8,157 @@ export default function Hero() {
   return (
     <section id="home" className="relative w-full border-b border-[var(--border-strong)]">
       {/* 48px Grid-paper canvas background */}
-      <div className="grid-canvas w-full overflow-hidden">
+      <div className="grid-canvas w-full overflow-hidden relative">
         <div className="max-w-[1344px] mx-auto flex justify-between relative">
           {/* Left hatched gutter (desktop xl+ only to prevent column squeezing on lg) */}
           <div className="hatch-gutter hidden xl:block shrink-0 self-stretch" aria-hidden="true" />
 
           {/* Centered 1280px Content Column */}
-          <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-16 pb-0 flex flex-col justify-between">
-            {/* Mobile & Tablet Layout (< 1024px: base, sm, md) — Exactly matching user sketch */}
-            <div className="lg:hidden flex flex-col items-start text-left w-full">
-              {/* Availability Badge & Location */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
-                  <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
-                  <span className="font-plex-mono text-[10px] sm:text-[11px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
-                    {hero.availability}
-                  </span>
+          <div className="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 md:pt-10 lg:pt-12 xl:pt-14 pb-0 flex flex-col justify-start relative">
+            {/* Mobile Layout (< 768px: phone & small screens) */}
+            <div className="md:hidden relative w-full min-h-[440px] xs:min-h-[480px] flex flex-col justify-start pb-4 overflow-hidden">
+              {/* Content in front, starting from the top */}
+              <div className="relative z-10 flex flex-col items-start text-left w-full max-w-[320px] xs:max-w-[360px] pt-0">
+                {/* Availability Badge & Location */}
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
+                    <span className="font-plex-mono text-[10px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
+                      {hero.availability}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[var(--text-tertiary)] text-[12px]">
+                    <AppIcon name="map-pin" className="w-3.5 h-3.5" />
+                    <span>{hero.location}</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-[var(--text-tertiary)] text-[12px] sm:text-[13px]">
-                  <AppIcon name="map-pin" className="w-3.5 h-3.5" />
-                  <span>{hero.location}</span>
+
+                {/* Display headline */}
+                <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.3rem,9vw,3.4rem)] leading-none tracking-[-0.02em] select-none mb-3">
+                  {hero.name}
+                </h1>
+
+                {/* Role Statement */}
+                <div className="mb-3.5">
+                  <p className="text-[18px] sm:text-[21px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
+                    {hero.roleLine1}
+                  </p>
+                  <p className="text-[14px] sm:text-[16px] text-[var(--text-secondary)] leading-tight mt-1">
+                    {hero.roleLine2}
+                  </p>
+                </div>
+
+                {/* Multiline Quote */}
+                <div className="relative max-w-[320px] mb-4 pl-3 border-l-2 border-[var(--accent)]">
+                  <p className="font-sans italic text-[13.5px] sm:text-[14.5px] leading-[1.4] text-[var(--text-secondary)]">
+                    “{hero.valueStatement}”
+                  </p>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="w-full max-w-[300px] flex xs:flex-row flex-col gap-2.5">
+                  <a
+                    href="#projects"
+                    className="flex-1 h-9 sm:h-10 px-3.5 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[13px] flex items-center justify-center gap-1.5 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                  >
+                    <AppIcon name="folder-git-2" className="w-3.5 h-3.5" />
+                    <span>View Projects</span>
+                  </a>
+
+                  <a
+                    href={hero.cvPdfUrl}
+                    download
+                    className="flex-1 h-9 sm:h-10 px-3.5 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[13px] flex items-center justify-center gap-1.5 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                  >
+                    <AppIcon name="file-text" className="w-3.5 h-3.5" />
+                    <span>Download CV</span>
+                  </a>
                 </div>
               </div>
 
-              {/* 1. NEIL SIERRA (Display headline) */}
-              <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[clamp(2.4rem,8.5vw,4.2rem)] leading-none tracking-[-0.02em] select-none mb-3 sm:mb-4">
-                {hero.name}
-              </h1>
-
-              {/* 2. Description (Role statement: two lines) */}
-              <div className="mb-4 sm:mb-5">
-                <p className="text-[18px] sm:text-[22px] md:text-[26px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
-                  {hero.roleLine1}
-                </p>
-                <p className="text-[15px] sm:text-[18px] md:text-[20px] text-[var(--text-secondary)] leading-tight mt-1">
-                  {hero.roleLine2}
-                </p>
-              </div>
-
-              {/* 3. Multiline Quote */}
-              <div className="relative max-w-[340px] sm:max-w-[460px] md:max-w-[540px] mb-5 sm:mb-6 pl-3 sm:pl-3.5 border-l-2 border-[var(--accent)]">
-                <p className="font-sans italic text-[14px] sm:text-[16px] md:text-[17px] leading-[1.4] text-[var(--text-secondary)]">
-                  “{hero.valueStatement}”
-                </p>
-              </div>
-
-              {/* 4. CTA Buttons (Primary & Secondary stacked vertically) */}
-              <div className="w-full max-w-[280px] sm:max-w-[240px] flex flex-col gap-3 mb-6 sm:mb-8">
-                {/* Primary CTA (Ink button) */}
-                <a
-                  href="#projects"
-                  className="w-full h-10 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
-                >
-                  <AppIcon name="folder-git-2" className="w-4 h-4" />
-                  <span>View Projects</span>
-                </a>
-
-                {/* Secondary CTA (Outlined button) */}
-                <a
-                  href={hero.cvPdfUrl}
-                  download
-                  className="w-full h-10 px-4 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
-                >
-                  <AppIcon name="file-text" className="w-4 h-4" />
-                  <span>Download CV</span>
-                </a>
-              </div>
-
-              {/* 5. Portrait Image directly above Marquee with Stat Cards flanking the bottom */}
-              <div className="relative w-full flex justify-center items-end -mt-8 sm:-mt-16">
-                {/* Portrait Image (Enlarged for base, sm, md) */}
-                <Image
-                  src={hero.portraitUrl}
-                  alt={`Portrait of ${hero.name}`}
-                  width={1024}
-                  height={1024}
-                  quality={100}
-                  unoptimized
-                  priority
-                  className="relative z-10 w-auto h-[340px] xs:h-[380px] sm:h-[440px] md:h-[500px] object-contain object-bottom drop-shadow-sm select-none pointer-events-none"
+              {/* Profile in absolute and behind, sticking to the bottom of the home */}
+              <div className="absolute bottom-0 right-[-20px] xs:right-0 z-0 pointer-events-auto flex items-end opacity-80 sm:opacity-90">
+                <InteractivePortrait
+                  name={hero.name}
+                  className="w-auto h-[320px] xs:h-[360px] sm:h-[400px] aspect-square flex items-end justify-center drop-shadow-sm select-none"
                 />
-
-                {/* 6. Stat Cards: Fixed sizing, no text truncation, cleanly positioned at bottom left & right */}
-                <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 w-full max-w-[560px] sm:max-w-[660px] md:max-w-[760px] mx-auto flex justify-between items-end px-2.5 sm:px-4 gap-2.5 sm:gap-4 z-20 pointer-events-none">
-                  {hero.stats.map((stat, idx) => (
-                    <div
-                      key={stat.label}
-                      className={`pointer-events-auto flex-1 min-w-0 max-w-[150px] xs:max-w-[175px] sm:max-w-[220px] md:max-w-[260px] stat-card flex items-center gap-2 sm:gap-3 p-2 xs:p-2.5 sm:p-3.5 bg-[var(--surface-base)] shadow-md border border-[var(--border-default)] transition-transform hover:-translate-y-0.5 ${idx === 1 ? "ml-auto" : ""
-                        }`}
-                    >
-                      <AppIcon
-                        name={stat.icon}
-                        className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-[var(--accent)] shrink-0"
-                      />
-                      <div className="flex flex-col text-left min-w-0">
-                        <span className="text-[18px] xs:text-[20px] sm:text-[24px] md:text-[26px] font-bold text-[var(--text-primary)] leading-none font-sans">
-                          {stat.value}
-                        </span>
-                        <span className="font-plex-mono text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.05em] sm:tracking-[0.08em] text-[var(--text-secondary)] mt-0.5 sm:mt-1 leading-tight whitespace-normal">
-                          {stat.label}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
-            {/* Desktop Composition (lg, xl, 2xl >= 1024px) — 3-column layout */}
-            <div className="hidden lg:grid lg:grid-cols-12 lg:gap-4 xl:gap-10 2xl:gap-16 items-end z-10">
-              {/* Left Column (Role statement + CTAs) */}
-              <div className="lg:col-span-3 xl:col-span-4 flex flex-col items-end text-right pb-8 xl:pb-12 z-10 lg:pr-2 xl:pr-4">
+            {/* Tablet Layout (md: 768px - 1023px) — Content starts from top, profile at bottom */}
+            <div className="hidden md:flex lg:hidden relative w-full min-h-[460px] md:min-h-[500px] items-start justify-between pb-6 pt-0 overflow-hidden">
+              {/* Left Content Column starts at the top */}
+              <div className="relative z-10 max-w-[420px] md:max-w-[460px] flex flex-col items-start text-left pt-0">
+                {/* Availability Badge & Location */}
+                <div className="flex flex-wrap items-center gap-2.5 mb-3">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)]">
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
+                    <span className="font-plex-mono text-[11px] uppercase tracking-[0.1em] text-[var(--text-primary)] font-medium">
+                      {hero.availability}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[var(--text-tertiary)] text-[12px]">
+                    <AppIcon name="map-pin" className="w-3.5 h-3.5" />
+                    <span>{hero.location}</span>
+                  </div>
+                </div>
+
+                {/* Name Display */}
+                <h1 className="font-serif-display font-bold uppercase text-[var(--accent)] text-[2.8rem] md:text-[3.2rem] leading-none tracking-[-0.02em] select-none mb-3">
+                  {hero.name}
+                </h1>
+
+                {/* Role Statement */}
+                <div className="mb-4">
+                  <p className="text-[22px] md:text-[24px] font-bold text-[var(--text-primary)] leading-tight tracking-[-0.03em]">
+                    {hero.roleLine1}
+                  </p>
+                  <p className="text-[17px] md:text-[18px] text-[var(--text-secondary)] leading-tight mt-1">
+                    {hero.roleLine2}
+                  </p>
+                </div>
+
+                {/* Quote */}
+                <div className="relative max-w-[300px] mb-5 pl-3 border-l-2 border-[var(--accent)]">
+                  <p className="font-sans italic text-[15px] leading-[1.45] text-[var(--text-secondary)]">
+                    “{hero.valueStatement}”
+                  </p>
+                </div>
+
+                {/* CTA Buttons (Vertical on tablet) */}
+                <div className="flex flex-col gap-2.5 w-full max-w-[240px]">
+                  <a
+                    href="#projects"
+                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[13px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                  >
+                    <AppIcon name="folder-git-2" className="w-4 h-4" />
+                    <span>View Projects</span>
+                  </a>
+
+                  <a
+                    href={hero.cvPdfUrl}
+                    download
+                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[13px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-xs"
+                  >
+                    <AppIcon name="file-text" className="w-4 h-4" />
+                    <span>Download CV</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Profile in absolute and behind, sticking to the bottom of the home */}
+              <div className="absolute bottom-0 right-0 md:right-4 lg:right-8 z-0 pointer-events-auto flex items-end">
+                <InteractivePortrait
+                  name={hero.name}
+                  className="w-auto h-[400px] md:h-[450px] aspect-square flex items-end justify-center drop-shadow-md select-none"
+                />
+              </div>
+            </div>
+
+            {/* Desktop Composition (lg, xl, 2xl >= 1024px) — Content starts from top, profile at bottom */}
+            <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 xl:gap-10 2xl:gap-16 items-start z-10 relative">
+              {/* Left Column (Role statement + CTAs, starts from top) */}
+              <div className="lg:col-span-4 flex flex-col items-end text-right pt-2 xl:pt-4 pb-0 z-10 lg:pr-2 xl:pr-4">
                 {/* Availability Badge */}
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)] mb-4 xl:mb-6 max-w-full">
                   <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
@@ -147,7 +187,7 @@ export default function Hero() {
                 <div className="w-full max-w-[220px] xl:max-w-[240px] flex flex-col gap-3">
                   <a
                     href="#projects"
-                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-xs"
                   >
                     <AppIcon name="folder-git-2" className="w-4 h-4" />
                     <span>View Projects</span>
@@ -156,7 +196,7 @@ export default function Hero() {
                   <a
                     href={hero.cvPdfUrl}
                     download
-                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                    className="w-full h-10 px-4 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] flex items-center justify-center gap-2 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-xs"
                   >
                     <AppIcon name="file-text" className="w-4 h-4" />
                     <span>Download CV</span>
@@ -164,32 +204,26 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Center Column: Portrait is relative, H1 sticks directly to it from behind (Enlarged on lg) */}
-              <div className="lg:col-span-6 xl:col-span-4 flex justify-center items-end relative z-20 px-2 xl:px-4">
-                <div className="relative w-auto h-[480px] xl:h-[560px] 2xl:h-[600px] aspect-square flex items-end">
-                  {/* H1 positioned absolute at top inside the container */}
-                  <h1 className="absolute top-0 left-1/2 -translate-x-1/2 z-0 font-serif-display font-bold uppercase text-[var(--accent)] text-[2.8rem] lg:text-[3.4rem] xl:text-[clamp(2.4rem,7vw,5.5rem)] 2xl:text-[6rem] leading-none tracking-[-0.02em] select-none whitespace-nowrap pointer-events-none">
-                    {hero.name}
-                  </h1>
+              {/* Center Column: H1 at top, Portrait sticks to bottom */}
+              <div className="lg:col-span-4 flex justify-center items-start relative h-[460px] xl:h-[540px] 2xl:h-[600px]">
+                {/* H1 positioned absolute at top inside the container */}
+                <h1 className="absolute top-0 left-1/2 -translate-x-1/2 z-10 font-serif-display font-bold uppercase text-[var(--accent)] text-[2.6rem] lg:text-[3.2rem] xl:text-[clamp(2.4rem,6vw,5.2rem)] 2xl:text-[6rem] leading-none tracking-[-0.02em] select-none whitespace-nowrap pointer-events-none">
+                  {hero.name}
+                </h1>
 
-                  {/* Profile image sitting in front with quality 100 & full resolution */}
-                  <Image
-                    src={hero.portraitUrl}
-                    alt={`Portrait of ${hero.name}`}
-                    width={1024}
-                    height={1024}
-                    quality={100}
-                    unoptimized
-                    priority
-                    className="relative z-10 w-auto h-[480px] xl:h-[560px] 2xl:h-[600px] object-contain object-bottom drop-shadow-sm select-none pointer-events-none"
+                {/* Profile image sitting in absolute bottom and behind */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 z-0 pointer-events-auto">
+                  <InteractivePortrait
+                    name={hero.name}
+                    className="w-auto h-[440px] xl:h-[520px] 2xl:h-[580px] aspect-square flex items-end justify-center drop-shadow-md select-none"
                   />
                 </div>
               </div>
 
-              {/* Right Column: Pull Quote + Stat Cards */}
-              <div className="lg:col-span-3 xl:col-span-4 flex flex-col items-start text-left pb-8 xl:pb-12 z-10 lg:pl-2 xl:pl-4">
+              {/* Right Column: Pull Quote + Stat Cards (starts from top) */}
+              <div className="lg:col-span-4 flex flex-col items-start text-left pt-2 xl:pt-4 pb-0 z-10 lg:pl-2 xl:pl-4">
                 {/* Pull Quote */}
-                <div className="relative max-w-[220px] xl:max-w-[290px] mb-6 xl:mb-8">
+                <div className="relative max-w-[240px] xl:max-w-[300px] mb-6 xl:mb-8">
                   <span className="text-[32px] text-[var(--accent)] font-serif leading-none absolute -top-3 -left-4 select-none">
                     “
                   </span>

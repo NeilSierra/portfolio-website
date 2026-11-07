@@ -29,26 +29,26 @@ export default function Contact() {
             </div>
 
             {/* Directory Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-12 scroll-fade">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mt-12 scroll-stagger">
               {/* Email Card */}
               <a
                 href={`mailto:${contact.email}`}
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
+                className="card-ring scroll-pop p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--border-strong)] hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-[var(--surface-raised)]">
                     <AppIcon name="mail" className="w-5 h-5 text-[var(--accent)]" />
                   </div>
                   <span className="font-plex-mono text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider block">
                     EMAIL DIRECT
                   </span>
-                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block break-all">
+                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block break-all group-hover:text-[var(--accent)] transition-colors duration-300">
                     {contact.email}
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-1 font-plex-mono text-[12px] text-[var(--accent)] font-semibold">
                   <span>Send Message</span>
-                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
 
@@ -57,22 +57,22 @@ export default function Contact() {
                 href={contact.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
+                className="card-ring scroll-pop p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--border-strong)] hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-[var(--surface-raised)]">
                     <GithubIcon className="w-5 h-5 text-[var(--accent)]" />
                   </div>
                   <span className="font-plex-mono text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider block">
                     CODE REPOSITORIES
                   </span>
-                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block">
+                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block group-hover:text-[var(--accent)] transition-colors duration-300">
                     github.com/NeilSierra
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-1 font-plex-mono text-[12px] text-[var(--accent)] font-semibold">
                   <span>View Repos</span>
-                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
 
@@ -81,22 +81,22 @@ export default function Contact() {
                 href={contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
+                className="card-ring scroll-pop p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--border-strong)] hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-[var(--surface-raised)]">
                     <LinkedinIcon className="w-5 h-5 text-[var(--accent)]" />
                   </div>
                   <span className="font-plex-mono text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider block">
                     PROFESSIONAL NETWORK
                   </span>
-                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block">
+                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block group-hover:text-[var(--accent)] transition-colors duration-300">
                     Neil Alfred Sierra
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-1 font-plex-mono text-[12px] text-[var(--accent)] font-semibold">
                   <span>Connect</span>
-                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
 
@@ -105,22 +105,22 @@ export default function Contact() {
                 href={contact.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
+                className="card-ring scroll-pop p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--border-strong)] hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-[var(--surface-raised)]">
                     <FacebookIcon className="w-5 h-5 text-[var(--accent)]" />
                   </div>
                   <span className="font-plex-mono text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider block">
                     FACEBOOK
                   </span>
-                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block">
+                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block group-hover:text-[var(--accent)] transition-colors duration-300">
                     Neil Alfred Sierra
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-1 font-plex-mono text-[12px] text-[var(--accent)] font-semibold">
                   <span>Follow</span>
-                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
 
@@ -129,22 +129,22 @@ export default function Contact() {
                 href={contact.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card-ring p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--accent)] transition-all"
+                className="card-ring scroll-pop p-6 border border-[var(--border-default)] flex flex-col justify-between group hover:border-[var(--border-strong)] hover:-translate-y-1.5"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4">
+                  <div className="w-10 h-10 rounded-[4px] bg-[var(--fill-subtle)] text-[var(--text-primary)] flex items-center justify-center mb-4 transition-colors duration-300 group-hover:bg-[var(--surface-raised)]">
                     <InstagramIcon className="w-5 h-5 text-[var(--accent)]" />
                   </div>
                   <span className="font-plex-mono text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider block">
                     INSTAGRAM
                   </span>
-                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block">
+                  <span className="text-[15px] font-bold text-[var(--text-primary)] mt-1 block group-hover:text-[var(--accent)] transition-colors duration-300">
                     @br1xk_
                   </span>
                 </div>
                 <div className="mt-6 flex items-center gap-1 font-plex-mono text-[12px] text-[var(--accent)] font-semibold">
                   <span>Connect</span>
-                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <AppIcon name="arrow-up-right" className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </a>
             </div>
@@ -153,7 +153,7 @@ export default function Contact() {
             <div className="mt-12 flex flex-wrap items-center gap-4 scroll-fade">
               <a
                 href={`mailto:${contact.email}`}
-                className="h-11 px-6 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--text-secondary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
+                className="h-11 px-6 rounded-[4px] bg-[var(--text-primary)] text-[var(--surface-base)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--text-secondary)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
               >
                 <AppIcon name="mail" className="w-4 h-4" />
                 <span>Email Neil Sierra</span>
@@ -162,7 +162,7 @@ export default function Contact() {
               <a
                 href={contact.cvPdfUrl}
                 download
-                className="h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--surface-raised)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
+                className="h-11 px-6 rounded-[4px] bg-[var(--surface-base)] border border-[var(--text-primary)] text-[var(--text-primary)] font-medium text-[14px] inline-flex items-center gap-2 hover:bg-[var(--surface-raised)] hover:scale-[1.02] active:scale-[0.98] transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 shadow-sm"
               >
                 <AppIcon name="file-text" className="w-4 h-4" />
                 <span>Download CV (PDF)</span>

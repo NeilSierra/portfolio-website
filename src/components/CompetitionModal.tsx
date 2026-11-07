@@ -111,7 +111,7 @@ export function CompetitionModal({
               type="button"
               onClick={onClose}
               aria-label="Close modal"
-              className="w-8 h-8 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-raised)] hover:border-[var(--accent)] transition-colors flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              className="w-8 h-8 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--surface-raised)] hover:border-[var(--border-strong)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
             >
               <AppIcon name="close" className="w-3.5 h-3.5" />
             </button>
@@ -145,7 +145,7 @@ export function CompetitionModal({
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous competition"
-                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--accent)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
+                className="absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--border-strong)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
               >
                 <svg className="w-5 h-5 -rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -156,7 +156,7 @@ export function CompetitionModal({
                 type="button"
                 onClick={handleNext}
                 aria-label="Next competition"
-                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--accent)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
+                className="absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[var(--surface-base)]/90 hover:bg-[var(--surface-base)] text-[var(--text-primary)] border border-[var(--border-default)] hover:border-[var(--border-strong)] flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] shadow-lg hover:scale-105"
               >
                 <svg className="w-5 h-5 rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 10l7-7m0 0l7 7m-7-7v18" />

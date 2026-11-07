@@ -80,7 +80,7 @@ export default function Education() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Main Education Card (Sticky on desktop) */}
-          <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 card-ring p-5 sm:p-8 border border-[var(--border-default)] scroll-scale">
+          <div className="lg:col-span-7 lg:sticky lg:top-24 xl:top-28 card-ring p-5 sm:p-8 border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:-translate-y-1 duration-300 scroll-pop">
             <div className="flex flex-col sm:flex-row items-start gap-4">
               <div className="relative w-12 h-12 rounded-[6px] bg-white border border-[var(--border-default)] p-1.5 flex items-center justify-center shrink-0 shadow-xs">
                 <Image
@@ -122,7 +122,7 @@ export default function Education() {
                     {education.coursework.map((course) => (
                       <span
                         key={course}
-                        className="text-[11px] sm:text-[12px] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-[4px] bg-[var(--surface-default)] text-[var(--text-secondary)] border border-[var(--border-default)]"
+                        className="text-[11px] sm:text-[12px] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-[4px] bg-[var(--surface-default)] text-[var(--text-secondary)] border border-[var(--border-default)] transition-colors duration-300 hover:border-[var(--border-strong)] hover:text-[var(--text-primary)]"
                       >
                         {course}
                       </span>
@@ -134,7 +134,7 @@ export default function Education() {
           </div>
 
           {/* Scholastic Achievements & Honors */}
-          <div className="lg:col-span-5 card-ring p-5 sm:p-7 border border-[var(--border-default)]">
+          <div className="lg:col-span-5 card-ring p-5 sm:p-7 border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:-translate-y-1 duration-300 scroll-pop">
             <div className="flex items-center justify-between gap-3 mb-6 pb-3 border-b border-[var(--border-default)]">
               <div className="flex items-center gap-2.5">
                 <AppIcon name="award" className="w-5 h-5 text-[var(--accent)]" />
@@ -239,7 +239,7 @@ export default function Education() {
                     key={cat}
                     type="button"
                     onClick={() => handleCategoryChange(cat)}
-                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${isActive
+                    className={`h-9 px-4 rounded-[4px] font-plex-mono text-[12px] uppercase tracking-wider font-semibold flex items-center gap-2 hover:scale-105 active:scale-95 transition-all shrink-0 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${isActive
                       ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-sm"
                       : "bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)] border border-[var(--border-default)]"
                       }`}
@@ -259,51 +259,52 @@ export default function Education() {
             </div>
 
             {/* Certifications Responsive Grid (Strictly 2 Rows Max) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 scroll-stagger">
               {paginatedCerts.map((cert, pageIdx) => {
                 const globalIdx = (currentPage - 1) * itemsPerPage + pageIdx;
 
                 return (
                   <div
                     key={cert.id}
-                    className="card-ring overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] transition-all hover:shadow-[var(--shadow-ring)] group"
+                    onClick={() => openModal(globalIdx)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openModal(globalIdx);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View certificate for ${cert.title}`}
+                    className="card-ring scroll-pop overflow-hidden flex flex-col justify-between border border-[var(--border-default)] hover:border-[var(--border-strong)] hover:-translate-y-1.5 group cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                   >
                     <div>
                       {/* Visual Preview Frame */}
                       {cert.imageUrl && (
-                        <div
-                          onClick={() => openModal(globalIdx)}
-                          className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden cursor-pointer border-b border-[var(--border-default)]"
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              openModal(globalIdx);
-                            }
-                          }}
-                          aria-label={`View certificate for ${cert.title}`}
-                        >
+                        <div className="relative w-full aspect-[16/10] bg-[var(--surface-code)] overflow-hidden border-b border-[var(--border-default)]">
                           <Image
                             src={cert.imageUrl}
                             alt={cert.title}
                             fill
                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                           />
 
                           {/* Category Badge Overlay */}
                           {cert.category && (
-                            <div className="absolute top-2.5 left-2.5">
+                            <div className="absolute top-2.5 left-2.5 z-10">
                               <span className="font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 uppercase tracking-wider">
                                 {cert.category}
                               </span>
                             </div>
                           )}
 
-                          {/* Inspect Indicator Overlay */}
-                          <div className="absolute bottom-2.5 right-2.5 font-plex-mono text-[10px] font-semibold px-2 py-0.5 rounded-[3px] bg-black/80 text-white border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                            <AppIcon name="external-link" className="w-3 h-3" />
-                            <span>Inspect</span>
+                          {/* Inspect Image Overlay on Hover */}
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-200 flex items-center justify-center pointer-events-none z-10">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] bg-black/85 text-white font-plex-mono text-[11px] font-semibold uppercase tracking-wider border border-white/25 shadow-lg backdrop-blur-xs transform scale-95 group-hover:scale-100 transition-transform">
+                              <AppIcon name="external-link" className="w-3.5 h-3.5" />
+                              <span>Inspect Image</span>
+                            </span>
                           </div>
                         </div>
                       )}
@@ -317,22 +318,10 @@ export default function Education() {
                           <span className="shrink-0">{cert.year}</span>
                         </div>
 
-                        <h4 className="text-[15px] sm:text-[16px] font-bold text-[var(--text-primary)] leading-snug line-clamp-2">
+                        <h4 className="text-[15px] sm:text-[16px] font-bold text-[var(--text-primary)] leading-snug line-clamp-2 group-hover:text-[var(--accent)] transition-colors">
                           {cert.title}
                         </h4>
                       </div>
-                    </div>
-
-                    {/* Card Action Button */}
-                    <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
-                      <button
-                        type="button"
-                        onClick={() => openModal(globalIdx)}
-                        className="w-full h-9 px-3 rounded-[4px] bg-[var(--surface-default)] hover:bg-[var(--surface-raised)] text-[var(--text-primary)] font-plex-mono text-[11px] uppercase tracking-wider font-semibold flex items-center justify-center gap-1.5 transition-colors border border-[var(--border-default)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-                      >
-                        <AppIcon name="external-link" className="w-3.5 h-3.5" />
-                        <span>View Certificate</span>
-                      </button>
                     </div>
                   </div>
                 );
@@ -353,7 +342,7 @@ export default function Education() {
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                     disabled={currentPage === 1}
-                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                     aria-label="Previous page"
                   >
                     <span>←</span>
@@ -366,7 +355,7 @@ export default function Education() {
                       key={pg}
                       type="button"
                       onClick={() => setCurrentPage(pg)}
-                      className={`w-8 h-8 rounded-[4px] font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${currentPage === pg
+                      className={`w-8 h-8 rounded-[4px] font-semibold hover:scale-105 active:scale-95 transition-all focus:outline-none focus:ring-2 focus:ring-[var(--accent)] ${currentPage === pg
                         ? "bg-[var(--text-primary)] text-[var(--surface-base)] shadow-xs"
                         : "border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-secondary)] hover:bg-[var(--surface-raised)] hover:text-[var(--text-primary)]"
                         }`}
@@ -382,7 +371,7 @@ export default function Education() {
                     type="button"
                     onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
                     disabled={currentPage === totalPages}
-                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+                    className="h-8 px-3 rounded-[4px] border border-[var(--border-default)] bg-[var(--surface-base)] text-[var(--text-primary)] hover:bg-[var(--surface-raised)] disabled:opacity-30 disabled:pointer-events-none hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                     aria-label="Next page"
                   >
                     <span className="hidden xs:inline">NEXT</span>

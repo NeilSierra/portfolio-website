@@ -1,0 +1,113 @@
+<svg width="800" height="480" viewBox="0 0 800 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background base -->
+  <rect width="800" height="480" fill="#0D0D0D"/>
+  
+  <!-- Subtle Blueprint Grid Pattern -->
+  <defs>
+    <pattern id="landbankGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1A2421" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="lbGreenGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#006837"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="480" fill="url(#landbankGrid)"/>
+
+  <!-- Browser Window Chrome Bar -->
+  <rect x="0" y="0" width="800" height="36" fill="#141414" stroke="#262626" stroke-width="1"/>
+  <circle cx="20" cy="18" r="5" fill="#FF5F56"/>
+  <circle cx="36" cy="18" r="5" fill="#FFBD2E"/>
+  <circle cx="52" cy="18" r="5" fill="#27C93F"/>
+  <rect x="75" y="7" width="360" height="22" rx="4" fill="#0A0A0A" stroke="#262626" stroke-width="1"/>
+  <text x="90" y="22" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#10B981">https://</text>
+  <text x="145" y="22" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#D4D4D4">iaccess.landbank.com // Redesign Portal</text>
+  <rect x="700" y="9" width="80" height="18" rx="3" fill="#006837" opacity="0.3"/>
+  <text x="740" y="22" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#10B981" font-weight="600">SECURE 256-BIT</text>
+
+  <!-- Portal Container Mockup -->
+  <rect x="30" y="55" width="740" height="400" rx="6" fill="#121212" stroke="#262626" stroke-width="1"/>
+
+  <!-- Top App Navigation Bar -->
+  <rect x="30" y="55" width="740" height="50" rx="6 6 0 0" fill="#161B18" stroke="#262626" stroke-width="1"/>
+  <rect x="50" y="68" width="24" height="24" rx="4" fill="url(#lbGreenGrad)"/>
+  <text x="62" y="85" text-anchor="middle" font-family="'Inter', sans-serif" font-weight="900" font-size="14" fill="#FFFFFF">L</text>
+  <text x="86" y="81" font-family="'Inter', sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">LANDBANK</text>
+  <text x="175" y="81" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#10B981" font-weight="600">iAccess</text>
+  
+  <rect x="470" y="68" width="130" height="24" rx="12" fill="#006837" opacity="0.25" stroke="#10B981" stroke-width="1"/>
+  <circle cx="482" cy="80" r="3.5" fill="#10B981"/>
+  <text x="540" y="84" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#10B981" font-weight="600">PRODUCTION READY</text>
+  <rect x="615" y="68" width="135" height="24" rx="4" fill="#222" stroke="#333" stroke-width="1"/>
+  <text x="682" y="84" text-anchor="middle" font-family="'Inter', sans-serif" font-size="10" fill="#999">Neil Sierra (Demo User)</text>
+
+  <!-- Left Sidebar Navigation -->
+  <rect x="30" y="105" width="170" height="350" fill="#0F1311" stroke="#262626" stroke-width="1"/>
+  <rect x="45" y="125" width="140" height="28" rx="4" fill="#006837" opacity="0.3" stroke="#10B981" stroke-width="1"/>
+  <text x="60" y="143" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#10B981">Dashboard Overview</text>
+  
+  <text x="60" y="178" font-family="'Inter', sans-serif" font-size="11" fill="#888">Accounts &amp; Cards</text>
+  <text x="60" y="210" font-family="'Inter', sans-serif" font-size="11" fill="#888">Fund Transfer (InstaPay)</text>
+  <text x="60" y="242" font-family="'Inter', sans-serif" font-size="11" fill="#888">Bills &amp; Government</text>
+  <text x="60" y="274" font-family="'Inter', sans-serif" font-size="11" fill="#888">e-Statements &amp; Tax</text>
+  <text x="60" y="306" font-family="'Inter', sans-serif" font-size="11" fill="#888">Security &amp; 2FA Settings</text>
+
+  <rect x="45" y="380" width="140" height="55" rx="4" fill="#161B18" stroke="#222" stroke-width="1"/>
+  <text x="55" y="400" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#10B981">TECH SPEC MATRIX</text>
+  <text x="55" y="414" font-family="'Inter', sans-serif" font-size="9" fill="#777">Next.js 16 • React 19</text>
+  <text x="55" y="426" font-family="'Inter', sans-serif" font-size="9" fill="#777">Tailwind v4 • Turbopack</text>
+
+  <!-- Main Content Dashboard Area -->
+  <!-- Top Balance Card -->
+  <rect x="220" y="125" width="310" height="110" rx="6" fill="#161B18" stroke="#22382C" stroke-width="1"/>
+  <text x="240" y="150" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#10B981" uppercase tracking="wider">TOTAL AVAILABLE BALANCE</text>
+  <text x="240" y="185" font-family="'Inter', sans-serif" font-size="28" font-weight="700" fill="#F9F9F9">₱ 248,920.50</text>
+  <text x="240" y="215" font-family="'IBM Plex Mono', monospace" font-size="10" fill="#777">LANDBANK High-Yield Savings •••• 4821</text>
+  <rect x="450" y="140" width="65" height="20" rx="3" fill="#006837" opacity="0.4"/>
+  <text x="482" y="154" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#10B981" font-weight="600">ACTIVE</text>
+
+  <!-- Performance Metric Cards -->
+  <rect x="545" y="125" width="205" height="50" rx="4" fill="#141414" stroke="#262626" stroke-width="1"/>
+  <text x="560" y="145" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#888">P95 ROUTE LATENCY</text>
+  <text x="560" y="165" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#10B981">&lt; 85ms</text>
+  <text x="645" y="163" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#555">Edge Cached</text>
+
+  <rect x="545" y="185" width="205" height="50" rx="4" fill="#141414" stroke="#262626" stroke-width="1"/>
+  <text x="560" y="205" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#888">ACCESSIBILITY SCORE</text>
+  <text x="560" y="225" font-family="'Inter', sans-serif" font-size="16" font-weight="700" fill="#F9F9F9">100 / 100</text>
+  <text x="645" y="223" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#10B981">WCAG AAA</text>
+
+  <!-- Quick Action Buttons -->
+  <rect x="220" y="250" width="120" height="34" rx="4" fill="url(#lbGreenGrad)"/>
+  <text x="280" y="272" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="600" fill="#FFFFFF">Send Money</text>
+
+  <rect x="350" y="250" width="120" height="34" rx="4" fill="#1E2420" stroke="#26382E" stroke-width="1"/>
+  <text x="410" y="272" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="500" fill="#E5E5E5">Pay Bills</text>
+
+  <rect x="480" y="250" width="120" height="34" rx="4" fill="#1E2420" stroke="#26382E" stroke-width="1"/>
+  <text x="540" y="272" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="500" fill="#E5E5E5">Transfer QR</text>
+
+  <rect x="610" y="250" width="140" height="34" rx="4" fill="#1E2420" stroke="#26382E" stroke-width="1"/>
+  <text x="680" y="272" text-anchor="middle" font-family="'Inter', sans-serif" font-size="11" font-weight="500" fill="#E5E5E5">Card Services</text>
+
+  <!-- Recent Transactions Ledger Mockup -->
+  <rect x="220" y="300" width="530" height="135" rx="4" fill="#141414" stroke="#262626" stroke-width="1"/>
+  <text x="240" y="322" font-family="'IBM Plex Mono', monospace" font-size="10" font-weight="600" fill="#888">RECENT ACTIVITY // VERIFIED LEDGER</text>
+  
+  <line x1="220" y1="332" x2="750" y2="332" stroke="#222" stroke-width="1"/>
+
+  <!-- Row 1 -->
+  <text x="240" y="352" font-family="'Inter', sans-serif" font-size="11" fill="#F9F9F9">InstaPay Transfer to BDO (Savings)</text>
+  <text x="240" y="364" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#666">Ref #TX-8291048 // 2026-11-06 14:22</text>
+  <text x="730" y="358" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" fill="#F87171">- ₱ 2,500.00</text>
+
+  <line x1="240" y1="374" x2="730" y2="374" stroke="#1F1F1F" stroke-width="1"/>
+
+  <!-- Row 2 -->
+  <text x="240" y="394" font-family="'Inter', sans-serif" font-size="11" fill="#F9F9F9">Direct Deposit — Academic Stipend / Merit</text>
+  <text x="240" y="406" font-family="'IBM Plex Mono', monospace" font-size="9" fill="#666">Ref #TX-7491023 // 2026-11-04 09:15</text>
+  <text x="730" y="400" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="600" fill="#34D399">+ ₱ 25,000.00</text>
+
+  <line x1="240" y1="416" x2="730" y2="416" stroke="#1F1F1F" stroke-width="1"/>
+</svg>
+
