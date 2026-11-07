@@ -155,10 +155,10 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Desktop Composition (lg, xl, 2xl >= 1024px) — Content starts from top, profile at bottom */}
-            <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 xl:gap-10 2xl:gap-16 items-start z-10 relative">
-              {/* Left Column (Role statement + CTAs, starts from top) */}
-              <div className="lg:col-span-4 flex flex-col items-end text-right pt-2 xl:pt-4 pb-0 z-10 lg:pr-2 xl:pr-4">
+            {/* Desktop Composition (lg, xl, 2xl >= 1024px) — Elements start from bottom */}
+            <div className="hidden lg:grid lg:grid-cols-12 lg:gap-6 xl:gap-10 2xl:gap-16 items-end z-10 relative">
+              {/* Left Column (Role statement + CTAs, aligned to bottom) */}
+              <div className="lg:col-span-4 flex flex-col items-end text-right pb-8 xl:pb-12 z-10 lg:pr-2 xl:pr-4">
                 {/* Availability Badge */}
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-[16px] bg-[var(--fill-subtle)] border border-[var(--border-default)] shadow-[var(--shadow-ring-faint)] mb-4 xl:mb-6 max-w-full">
                   <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse shrink-0" />
@@ -204,8 +204,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Center Column: H1 at top, Portrait sticks to bottom */}
-              <div className="lg:col-span-4 flex justify-center items-start relative h-[460px] xl:h-[540px] 2xl:h-[600px]">
+              {/* Center Column: Portrait grounded at bottom, H1 at top */}
+              <div className="lg:col-span-4 flex justify-center items-end relative h-[460px] xl:h-[540px] 2xl:h-[600px]">
                 {/* H1 positioned absolute at top inside the container */}
                 <h1 className="absolute top-0 left-1/2 -translate-x-1/2 z-10 font-serif-display font-bold uppercase text-[var(--accent)] text-[2.6rem] lg:text-[3.2rem] xl:text-[clamp(2.4rem,6vw,5.2rem)] 2xl:text-[6rem] leading-none tracking-[-0.02em] select-none whitespace-nowrap pointer-events-none">
                   {hero.name}
@@ -220,8 +220,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Right Column: Pull Quote + Stat Cards (starts from top) */}
-              <div className="lg:col-span-4 flex flex-col items-start text-left pt-2 xl:pt-4 pb-0 z-10 lg:pl-2 xl:pl-4">
+              {/* Right Column: Pull Quote + Stat Cards (aligned to bottom) */}
+              <div className="lg:col-span-4 flex flex-col items-start text-left pb-8 xl:pb-12 z-10 lg:pl-2 xl:pl-4">
                 {/* Pull Quote */}
                 <div className="relative max-w-[240px] xl:max-w-[300px] mb-6 xl:mb-8">
                   <span className="text-[32px] text-[var(--accent)] font-serif leading-none absolute -top-3 -left-4 select-none">
