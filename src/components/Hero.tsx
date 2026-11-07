@@ -73,8 +73,8 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* Portrait Image centered in normal flow (not absolute), grounded right above Marquee */}
-              <div className="relative w-full flex justify-center items-end mt-2 sm:mt-4">
+              {/* Portrait Image centered in normal flow with negative top margin */}
+              <div className="relative w-full flex justify-center items-end -mt-6 sm:-mt-10">
                 <InteractivePortrait
                   name={hero.name}
                   className="relative z-10 w-auto h-[320px] sm:h-[400px] aspect-square flex items-end justify-center drop-shadow-sm select-none"
@@ -143,8 +143,8 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Profile in absolute and behind, sticking to the bottom of the home */}
-              <div className="absolute bottom-0 right-0 md:right-4 lg:right-8 z-0 pointer-events-auto flex items-end">
+              {/* Profile in absolute and behind, sticking to the bottom with negative right margin on tablet */}
+              <div className="absolute bottom-0 right-0 -mr-6 md:-mr-10 lg:mr-0 z-0 pointer-events-auto flex items-end">
                 <InteractivePortrait
                   name={hero.name}
                   className="w-auto h-[400px] md:h-[450px] aspect-square flex items-end justify-center drop-shadow-md select-none"
